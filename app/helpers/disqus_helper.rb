@@ -1,0 +1,42 @@
+module DisqusHelper
+
+  DISQUS_TITLE = "disqus_title"
+  DISQUS_SHORTNAME = "disqus_shortname"
+  DISQUS_DEVELOPER = "disqus_developer"
+  DISQUS_DEVELOPER_OFF = "0"
+  DISQUS_DEVELOPER_ON = "1"
+  DISQUS_IDENTIFIER = "disqus_identifier"
+  DISQUS_CATEGORY = "disqus_category_id"
+  SHORTNAME = "medu"
+  SEMI_COLON = ";"
+
+  DISQUS_FUNCTION = "(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();"
+
+  def  DisqusHelper.build_variable(name, value)
+    var = 'var ' + name + ' = "' + value +'"' + SEMI_COLON
+    return var
+  end
+
+  def DisqusHelper.get_developer
+    value = DISQUS_DEVELOPER_OFF
+
+    if RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?
+      value = DISQUS_DEVELOPER_ON
+    end
+
+    var = 'var ' + DISQUS_DEVELOPER + ' = ' + value + SEMI_COLON
+  end
+
+  def DisqusHelper.get_shortname
+    return DisqusHelper.build_variable(DisqusHelper::DISQUS_SHORTNAME, DisqusHelper::SHORTNAME)
+  end
+
+  def DisqusHelper.get_function
+    return DISQUS_FUNCTION
+  end
+
+end
