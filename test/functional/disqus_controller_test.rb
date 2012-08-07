@@ -49,7 +49,7 @@ class DisqusControllerTest < ActionController::TestCase
     body = endpoint.call(env)
     text = body[2].body
 
-    assert_equal( true, text.length == 0)
+    assert_equal(true, check_error_var(text))
 
   end
 
@@ -63,7 +63,7 @@ class DisqusControllerTest < ActionController::TestCase
     body = endpoint.call(env)
     text = body[2].body
 
-    assert_equal( true, text.length == 0)
+    assert_equal(true, check_error_var(text))
 
   end
 
@@ -77,7 +77,7 @@ class DisqusControllerTest < ActionController::TestCase
     body = endpoint.call(env)
     text = body[2].body
 
-    assert_equal( true, text.length == 0)
+    assert_equal(true, check_error_var(text))
 
   end
 
@@ -91,7 +91,7 @@ class DisqusControllerTest < ActionController::TestCase
     body = endpoint.call(env)
     text = body[2].body
 
-    assert_equal( true, text.length == 0)
+    assert_equal(true, check_error_var(text))
 
   end
 
@@ -105,7 +105,7 @@ class DisqusControllerTest < ActionController::TestCase
     body = endpoint.call(env)
     text = body[2].body
 
-    assert_equal( true, text.length == 0)
+    assert_equal(true, check_error_var(text))
 
   end
 
@@ -119,8 +119,11 @@ class DisqusControllerTest < ActionController::TestCase
     body = endpoint.call(env)
     text = body[2].body
 
-    assert_equal( true, text.length == 0)
+    assert_equal(true, check_error_var(text))
 
   end
 
+  def check_error_var (text)
+    return  text.include?(DisqusHelper::ERROR_VAR)
+  end
 end

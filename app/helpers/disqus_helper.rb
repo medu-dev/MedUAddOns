@@ -16,6 +16,13 @@ module DisqusHelper
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 })();"
 
+  TEST_COURSE = "0000"
+  ERROR_VAR = "var error_disqus_setup = '"
+  VISIBLE_ERROR_MSG = "Comments are currently unavailable"
+  DIV_ID = "disqus_thread"
+
+  @@supported_courses = [TEST_COURSE]
+
   def  DisqusHelper.build_variable(name, value)
     var = 'var ' + name + ' = "' + value +'"' + SEMI_COLON
     return var
@@ -39,4 +46,14 @@ module DisqusHelper
     return DISQUS_FUNCTION
   end
 
+  def DisqusHelper.is_supported?   (course_id)
+    return   @@supported_courses.include? (course_id)
+  end
+
+  def DisqusHelper.set_error(msg)
+    var = ERROR_VAR  + msg + "';\n"
+    var += 'document.getElementById("' + DIV_ID + '").innerHTML="' + VISIBLE_ERROR_MSG + '";'
+
+    return var
+  end
 end

@@ -10,10 +10,12 @@ class DisqusController < ApplicationController
       var = get_vars (params)
       var += DisqusHelper.get_function
     rescue   Exception => exception
-      puts "---- Exception: get_embedded_comments: " + exception.to_s
+      error_msg = get_error_msg("getcomments", exception.to_s)
+      puts "-----> " + error_msg
+      var = DisqusHelper.set_error(error_msg)
     end
 
-    render  text: var
+    render  js: var
   end
 
   def get_vars  (params)
@@ -54,4 +56,11 @@ class DisqusController < ApplicationController
      end
    end
 
+  def get_error_msg method, exception_msg
+    msg =  DateTime.now.strftime("%a, %b %d %Y %H:%M:%S ")
+    msg +=   "Exception in " + method   + ": "
+    msg += exception_msg
+
+    return msg
+  end
 end
