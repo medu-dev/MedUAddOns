@@ -3,16 +3,20 @@ class DisqusController < ApplicationController
    CARD_TITLE_PARAM = "title"
    CARD_IDENTIFIER_PARAM = "identifier"
    CARD_CATEGORY_ID_PARAM = "categoryId"
+   COURSE_NUMBER_PARAM = "courseId"
 
   def getcomments
     var = ""
-    begin
-      var = get_vars (params)
-      var += DisqusHelper.get_function
-    rescue   Exception => exception
-      error_msg = get_error_msg("getcomments", exception.to_s)
-      puts "-----> " + error_msg
-      var = DisqusHelper.set_error(error_msg)
+
+    if is_course_supported(params)
+      begin
+        var = get_vars (params)
+        var += DisqusHelper.get_function
+      rescue   Exception => exception
+        error_msg = get_error_msg("getcomments", exception.to_s)
+        puts "-----> " + error_msg
+        var = DisqusHelper.set_error(error_msg)
+      end
     end
 
     render  js: var
@@ -63,4 +67,11 @@ class DisqusController < ApplicationController
 
     return msg
   end
+
+  def is_course_supported params
+    course_id = params[COURSE_NUMBER_PARAM]
+
+    return DisqusHelper.is_supported? (course_id)
+  end
+
 end

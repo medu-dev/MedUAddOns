@@ -7,7 +7,9 @@ module DisqusHelper
   DISQUS_DEVELOPER_ON = "1"
   DISQUS_IDENTIFIER = "disqus_identifier"
   DISQUS_CATEGORY = "disqus_category_id"
-  SHORTNAME = "medu"
+  PRODUCTION_SHORTNAME = "medu"
+  TESTING_SHORTNAME = "meduTest"
+
   SEMI_COLON = ";"
 
   DISQUS_FUNCTION = "(function() {
@@ -39,7 +41,12 @@ module DisqusHelper
   end
 
   def DisqusHelper.get_shortname
-    return DisqusHelper.build_variable(DisqusHelper::DISQUS_SHORTNAME, DisqusHelper::SHORTNAME)
+    shortname =   PRODUCTION_SHORTNAME
+
+    if RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?
+         shortname = TESTING_SHORTNAME
+    end
+    return DisqusHelper.build_variable(DisqusHelper::DISQUS_SHORTNAME, shortname)
   end
 
   def DisqusHelper.get_function
@@ -56,4 +63,5 @@ module DisqusHelper
 
     return var
   end
+
 end

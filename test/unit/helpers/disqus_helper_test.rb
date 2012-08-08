@@ -24,4 +24,9 @@ class DisqusHelperTest < ActionView::TestCase
     assert_equal(true, msg.include?(error_msg))
     assert_equal(true, msg.include?(DisqusHelper::ERROR_VAR))
   end
+
+  def test_get_shortname
+    var = 'var ' + DisqusHelper::DISQUS_SHORTNAME + ' = "' + DisqusHelper::TESTING_SHORTNAME  + '"' + DisqusHelper::SEMI_COLON
+    assert_equal(var, DisqusHelper.get_shortname)
+  end
 end
