@@ -28,6 +28,8 @@ group :test do
   gem 'mocha', :require => false
 end
 
+gem 'thin'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
