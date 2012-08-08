@@ -43,7 +43,7 @@ module DisqusHelper
   def DisqusHelper.get_shortname
     shortname =   PRODUCTION_SHORTNAME
 
-    if RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?
+    if RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?  || RunTimeEnvironment.is_staging?
          shortname = TESTING_SHORTNAME
     end
     return DisqusHelper.build_variable(DisqusHelper::DISQUS_SHORTNAME, shortname)
