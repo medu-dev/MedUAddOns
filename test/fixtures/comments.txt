@@ -1,0 +1,5 @@
+var disqus_shortname = '<PMW shortname>';
+var disqus_developer = '<PMW developer>';
+var disqus_title  =  '<PMW cardname>';
+var disqus_category_id  =  '<PMW casename>';
+var disqus_identifier =  '<PMW cardid>';

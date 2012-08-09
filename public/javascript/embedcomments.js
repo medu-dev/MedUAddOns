@@ -1,13 +1,8 @@
-//    discqus variables
-var disqus_shortname = 'medu';
-var disqus_developer = 1;
-
-// test settings - comment out before releasing
-var disqus_title  = "test page";
-var disqus_category_id  = "test category 2" ;
-var disqus_identifier = "5555";
-
-//var test = true;
+var disqus_shortname = '<PMW shortname>';
+var disqus_developer = '<PMW developer>';
+var disqus_title  =  '<PMW cardname>';
+var disqus_category_id  =  '<PMW casename>';
+var disqus_identifier =  '<PMW cardid>';
 
 (function() {
   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
