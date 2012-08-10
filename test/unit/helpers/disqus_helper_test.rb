@@ -8,6 +8,7 @@ class DisqusHelperTest < ActionView::TestCase
     assert_equal(true, DisqusHelper.is_supported?(DisqusHelper::TEST_COURSE))
     assert_equal(false, DisqusHelper.is_supported?("xyzzy"))
     assert_equal(false, DisqusHelper.is_supported?(nil))
+    assert_equal(true, DisqusHelper.is_supported?("3420"))
   end
 
   def test_error_setup

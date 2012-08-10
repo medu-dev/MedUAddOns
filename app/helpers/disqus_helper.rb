@@ -17,7 +17,9 @@ module DisqusHelper
   IDENTIFIER_TAG = "<PMW cardid>"
   CATEGORY_TAG = "<PMW casename>"
 
-  @@supported_courses = [TEST_COURSE]
+  @@supported_courses ={   "3420" => "clipp",
+                                                TEST_COURSE =>  TESTING_SHORTNAME
+                                            }
 
   def DisqusHelper.replace_tag(str, tag, value)
     return str.gsub!(tag, value)
