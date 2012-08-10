@@ -17,7 +17,7 @@ module DisqusHelper
   IDENTIFIER_TAG = "<PMW cardid>"
   CATEGORY_TAG = "<PMW casename>"
 
-  @@supported_courses ={   "3420" => "clipp",
+  @@supported_courses ={   "3420" => "medu-clipp",
                                                 TEST_COURSE =>  TESTING_SHORTNAME
                                             }
 
@@ -35,14 +35,12 @@ module DisqusHelper
     replace_tag(text, DEVELOPER_TAG, value)
   end
 
-  def DisqusHelper.replace_shortname_tag   text
-    shortname =   PRODUCTION_SHORTNAME
+  def DisqusHelper.replace_shortname_tag(text, courseid)
+    shortname =   @@supported_courses[courseid]
 
-    if RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?  || RunTimeEnvironment.is_staging?
-      shortname = TESTING_SHORTNAME
-    end
     replace_tag(text, SHORTNAME_TAG, shortname)
   end
+
 
   def DisqusHelper.is_supported?   (course_id)
     return   @@supported_courses.include? (course_id)
@@ -53,6 +51,10 @@ module DisqusHelper
     var += 'document.getElementById("' + DIV_ID + '").innerHTML="' + VISIBLE_ERROR_MSG + '";'
 
     return var
+  end
+
+  def DisqusHelper.get_shortname(courseid)
+      return  @@supported_courses[courseid]
   end
 
 end

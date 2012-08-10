@@ -48,9 +48,18 @@ class DisqusHelperTest < ActionView::TestCase
     text = read_comments_fixture
     assert_not_nil(text)
 
-    str = DisqusHelper.replace_shortname_tag(text)
+    courseid = "3420"
+
+    str = DisqusHelper.replace_shortname_tag(text, courseid)
     assert_not_nil(str)
-    assert_equal(true, text.include?(DisqusHelper::TESTING_SHORTNAME))
+    assert_equal(true, text.include?(DisqusHelper.get_shortname(courseid)))
+
+    text = read_comments_fixture
+    courseid = DisqusHelper::TEST_COURSE
+
+    str = DisqusHelper.replace_shortname_tag(text, courseid)
+    assert_not_nil(str)
+    assert_equal(true, text.include?(DisqusHelper.get_shortname(TEST_COURSE)))
   end
 
   # utility methods

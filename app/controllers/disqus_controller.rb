@@ -25,7 +25,8 @@ class DisqusController < ApplicationController
   end
 
   def get_vars  (params, text)
-    DisqusHelper.replace_shortname_tag (text)
+    courseid = get_courseid(params)
+    DisqusHelper.replace_shortname_tag(text, courseid)
     DisqusHelper.replace_developer_tag(text)
 
     get_title(params, text)
@@ -35,7 +36,16 @@ class DisqusController < ApplicationController
     return text
   end
 
-  def get_title params, text
+   def get_courseid params
+     courseid = params[COURSE_NUMBER_PARAM]
+     if(courseid ==nil || courseid.length == 0)
+       raise "No course id"
+     end
+
+     return courseid
+   end
+
+   def get_title params, text
     title = params[CARD_TITLE_PARAM]
     if(title !=nil && title.length > 0)
       return DisqusHelper.replace_tag(text, DisqusHelper::TITLE_TAG,title )
