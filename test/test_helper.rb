@@ -2,18 +2,9 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/reporters'
-require 'mocha'
+require 'mocha/setup'
 
 MiniTest::Reporters.use!  MiniTest::Reporters::RubyMineReporter.new
-
-#MiniTest::Unit.runner = MiniTest::SuiteRunner.new
-#if ENV["RM_INFO"] || ENV["TEAMCITY_VERSION"]
-#  MiniTest::Unit.runner.reporters << MiniTest::Reporters::RubyMineReporter.new
-#elsif ENV['TM_PID']
-#  MiniTest::Unit.runner.reporters << MiniTest::Reporters::RubyMateReporter.new
-#else
-#  MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
-#end
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.

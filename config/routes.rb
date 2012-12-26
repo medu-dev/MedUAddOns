@@ -5,6 +5,9 @@ MedUAddOns::Application.routes.draw do
 
   get "disqus/getcomments"
 
-  root to: 'comments#show'
+  root to: 'login#login'
+
+  post "login/login_to_casus"
+  get "login/login"
 
 end
