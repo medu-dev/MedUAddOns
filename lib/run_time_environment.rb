@@ -6,29 +6,29 @@ class RunTimeEnvironment
   TEST = "test"
 
   def self.get_runtime_environment
-    environment =   ENV['RAILS_ENV']
+    environment =   Rails.env
 
     return environment
   end
 
   def self.is_production?
-       return ENV['RAILS_ENV'] == PRODUCTION
+       return Rails.env.production?
   end
 
 def self.is_development?
-  return ENV['RAILS_ENV'] == DEVELOPMENT
+  return Rails.env.development?
 end
 
   def self.is_staging?
-    return ENV['RAILS_ENV'] == STAGING
+    return Rails.env.staging?
   end
 
   def self.is_test?
-    return ENV['RAILS_ENV'] == TEST
+    return Rails.env.test?
   end
 
   def self.log_runtime_environment
-    puts  "---- Rails Env: " + ENV['RAILS_ENV']
+    puts  "---- Rails Env: " + Rails.env
   end
 
 end
