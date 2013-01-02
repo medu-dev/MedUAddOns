@@ -1,0 +1,47 @@
+<script type="text/javascript">
+
+  function addQuestion() {
+    showQuestionDialog();
+  }
+
+  $(document).ready(function(){
+    createProgressDialog();
+    createQuestionDialog();
+  });
+
+</script>
+
+<div style="margin: 10px 5px;">
+  <button type="button" onclick="addQuestion()">Add a question</button>
+</div>
+
+<table id="questionListTable">
+<% if @all_questions.length > 0 %>
+    <tr>
+      <th>Question</th>
+      <th>Card Id</th>
+    </tr>
+    <% count = 0 %>
+    <% @all_questions.each do |value| %>
+      <tr class="<%=count % 2 > 0 ? 'odd':''%>">
+        <td><%=value["body"]%></td>
+        <td><%=value["card_id"]%></td>
+        <% count += 1 %>
+      </tr>
+    <%end%>
+ <%else%>
+  <tr><td>No questions have been created</td></tr>
+ <%end%>
+</table>
+<div id="progressDlg">
+  <div id="progressText" ></div>
+  <img src="/assets/progress.gif"/>
+</div>
+<div id="questionDlg">
+  <b>Add a question</b><br/>
+
+  Question:<br/>
+  <textarea id="questionBody" rows="2" style="width:90%; padding:2px;"></textarea><br/>
+
+  Card Id: <input type="text" id="cardId"/> <br/>
+</div>

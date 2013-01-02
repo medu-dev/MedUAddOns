@@ -1,0 +1,41 @@
+.odd {
+  background: #EEEEEE;
+}
+
+#questionListTable
+  {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  margin-left:5px;
+  margin-bottom: 5px;
+  width: 40%;
+  border-collapse: collapse;
+  text-align: left;
+}
+#questionListTable th
+  {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #404040;
+  padding: 2px 8px;
+  border-bottom: 2px solid #aaaaaa;
+}
+#questionListTable td
+  {
+  font-size: 13px;
+  font-color: #404040;
+  color: #404040;
+  padding: 4px 8px;
+}
+
+#questionListTable a {
+  color: #404040;
+  font-weight: bold;
+}
+
+#questionListTable a:hover {
+  cursor:pointer;
+  color: #404040;
+  font-weight: bold;
+}

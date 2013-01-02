@@ -12,7 +12,7 @@ class DisqusController < ApplicationController
 
     if is_course_supported(params)
       begin
-        var  = read_template(COMMENTS_TEMPLATE_PATH)
+        var  = UtilHelper.read_template(COMMENTS_TEMPLATE_PATH)
         get_vars(params, var)
       rescue   Exception => exception
         error_msg = get_error_msg("getcomments", exception.to_s)
@@ -84,22 +84,6 @@ class DisqusController < ApplicationController
     course_id = params[COURSE_NUMBER_PARAM]
 
     return DisqusHelper.is_supported? (course_id)
-  end
-
-  def read_template   path
-     template = ""
-    begin
-      template_file = File.open(path, "r")
-      if (template_file == nil)
-        raise "Unable to read template: "  + path
-      else
-        file_size = File.size(path)
-        template = template_file.sysread(file_size)
-        return template
-      end
-    rescue   Exception => exception
-         raise exception.to_s
-    end
   end
 
 end

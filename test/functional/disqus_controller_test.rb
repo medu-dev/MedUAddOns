@@ -151,7 +151,7 @@ class DisqusControllerTest < ActionController::TestCase
   end
 
   def test_read_comments_file
-    text = @controller.read_template (DisqusController::COMMENTS_TEMPLATE_PATH)
+    text = UtilHelper.read_template (DisqusController::COMMENTS_TEMPLATE_PATH)
     assert_not_nil(text)
     assert_equal(true,  text.length > 0)
     assert_equal(true, text.include?(DISQUS_TITLE))

@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  function getRating(id, question_id) {
+    var value = $("#"+id).val();
+    alert("value: " + value);
+  }
+
+</script>
+
+<% if @questions != nil %>
+  <% @questions.each do |question| %>
+    <div class="rating">
+      <% question_id =  question['questions_id']%>
+      <div class="question_div"><%=  question["body"] %> &nbsp;</div>
+
+      <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_5") %>" name="rating" value="5" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_5") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_5") %>', '<%= question_id %>')" title="Rocks!">5 stars</label>
+      <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_4") %>" name="rating" value="4" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_4") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_4") %>', '<%= question_id %>')" title="Pretty good">4 stars</label>
+      <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_3") %>" name="rating" value="3" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_3") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_3") %>', '<%= question_id %>')" title="Meh">3 stars</label>
+      <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_2") %>" name="rating" value="2" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_2") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_2") %>', '<%= question_id %>')" title="Kinda bad">2 stars</label>
+      <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_1") %>" name="rating" value="1" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_1") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_1") %>', '<%= question_id %>')" title="Sucks big time">1 star</label>
+    </div>
+    <div class="question_footer"></div>
+    <br/>
+  <% end %>
+
+<% end %>

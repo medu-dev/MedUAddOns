@@ -1,13 +1,19 @@
 MedUAddOns::Application.routes.draw do
 
-  #this is for testing
-  get "comments/show"
+  get "q_unit_test/show"
 
+  get "test_card_questions/show"
+
+  #disqus
+  get "comments/show"  #this is for testing
   get "disqus/getcomments"
 
-  root to: 'login#login'
-
-  post "login/login_to_casus"
-  get "login/login"
+  # card questions
+  get "question_admin/init"
+  get "card_questions/init"
+  get "card_questions/show"
+  post "card_questions/save_answer"
+  get "test_card_questions/show"  # for testing
+  get "q_unit_test/show"
 
 end

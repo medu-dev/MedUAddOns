@@ -1,3 +1,5 @@
+require 'run_time_environment'
+
 module DisqusHelper
 
   PRODUCTION_SHORTNAME = "medu"
