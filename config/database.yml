@@ -18,6 +18,14 @@ test:
   username: postgres
   password: jgs4pg
 
+  staging:
+    adapter: postgresql
+    encoding: unicode
+    database: addons_staging
+    pool: 5
+    username: postgres
+    password:
+
 production:
   adapter: postgresql
   encoding: unicode
