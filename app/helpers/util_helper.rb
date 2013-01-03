@@ -9,6 +9,12 @@ module UtilHelper
   # substitution parameters
   SUB_CARDID = "<<CARDID>>"
   SUB_USERID = "<<USERID>>"
+  SUB_HOSTNAME = "<<HOSTNAME>>"
+
+  # host names
+  LOCALHOST = "localhost:3000"
+  STAGING = "cryptic-bastion-5586"
+  PRODUCTION = "localhost:3000"
 
   UNKNOWN_USER ="unknown"
 
@@ -62,4 +68,21 @@ module UtilHelper
     return user_id
   end
 
+  def self.replace_hostname(text)
+    hostname = get_hostname
+    replace_tag(text, SUB_HOSTNAME, hostname)
+  end
+
+  def self.get_hostname
+    hostname = PRODUCTION
+
+    if(RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?)
+      hostname = LOCALHOST
+    else if RunTimeEnvironment.is_staging?
+          hostname = STAGING
+         end
+    end
+
+    return hostname
+  end
 end

@@ -25,7 +25,8 @@ function createIFrame() {
     element.style.overflow = "hidden";
     element.style.height = "327px;";
     element.width="100%";
-    element.src="http://localhost:3000/card_questions/show?cardid=<<CARDID>>&userid=<<USERID>>";
+    element.src="http://<<HOSTNAME>>" +
+        "/card_questions/show?cardid=<<CARDID>>&userid=<<USERID>>";
     element.scrolling="no";
     element.horizontalscrolling="no";
     element.verticalscrolling="no";

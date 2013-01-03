@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'run_time_environment'
 
 class UtilHelperTest < ActionView::TestCase
 
@@ -91,6 +92,26 @@ class UtilHelperTest < ActionView::TestCase
 
     user_id = UtilHelper.get_user_id(params)
     assert_equal(UtilHelper::UNKNOWN_USER, user_id)
+  end
+
+  def test_replace_hostname
+    hostname = UtilHelper.get_hostname
+    assert_not_nil(hostname)
+    assert_equal(true, hostname.length > 0)
+
+    str = "Now is the time "+ UtilHelper::SUB_HOSTNAME+ "xyzzy"
+
+    found = UtilHelper.replace_hostname(str)
+
+    assert_not_nil(found)
+    assert_equal(true, str.include?(hostname))
+    assert_equal(true, str.include?(hostname+"xyzzy"))
+  end
+
+  def test_get_hostname
+    hostname = UtilHelper.get_hostname
+
+    assert_equal(hostname, UtilHelper::LOCALHOST)
   end
 
 end
