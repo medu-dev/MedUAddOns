@@ -13,7 +13,7 @@ module UtilHelper
 
   # host names
   LOCALHOST = "localhost:3000"
-  STAGING = "cryptic-bastion-5586"
+  STAGING = "cryptic-bastion-5586.herokuapp.com"
   PRODUCTION = "localhost:3000"
 
   UNKNOWN_USER ="unknown"
