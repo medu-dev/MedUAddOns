@@ -1,7 +1,8 @@
 // Creates an iframe and adds it to a div. Expects a div with the id "card_questions".
 // this could be generalized to accept parameters for the div id and iframe properties
 
-$(document).ready(function(){
+//$(document).ready(function(){
+jQuery(document).ready(function ($) {
   addIFrame();
 });
 
