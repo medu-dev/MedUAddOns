@@ -10,6 +10,12 @@ MedUAddOns::Application.routes.draw do
 
   # card questions
   get "question_admin/init"
+  get "question_admin/get_all"
+  post "question_admin/add_question"
+  post "question_admin/edit_question"
+  post "question_admin/delete_question"
+  post "question_admin/delete_relationship"
+  post "question_admin/add_relation"
   get "card_questions/init"
   get "card_questions/show"
   post "card_questions/save_answer"

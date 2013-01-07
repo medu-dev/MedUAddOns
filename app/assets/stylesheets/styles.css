@@ -1,0 +1,13 @@
+
+.headerDiv {
+  width: 90%;
+  border-bottom: 2px solid #aaaaaa;
+  margin-bottom: 10px;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+.headerImg {
+  vertical-align:text-bottom;
+  margin:0;
+  padding:0;
+}

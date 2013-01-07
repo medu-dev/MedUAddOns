@@ -25,8 +25,8 @@ module QuestionAdminHelper
 
   def self.select_all()
     sql = "SELECT questions.id AS questions_id, questions.body, question_cards.card_id,  question_cards.id AS relation_id "
-    sql << "FROM questions JOIN question_cards ON question_cards.question_id = questions.id "
-    sql << "ORDER BY question_cards.card_id"
+    sql << "FROM questions LEFT OUTER JOIN question_cards ON question_cards.question_id = questions.id "
+    sql << "ORDER BY questions.id"
 
     all = Question.find_by_sql(sql)
 

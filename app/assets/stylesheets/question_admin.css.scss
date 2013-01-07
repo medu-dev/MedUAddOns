@@ -12,15 +12,15 @@
   border-collapse: collapse;
   text-align: left;
 }
-#questionListTable th
-  {
-  font-family: Calibri, Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: bold;
-  color: #404040;
-  padding: 2px 8px;
-  border-bottom: 2px solid #aaaaaa;
-}
+//#questionListTable th
+//  {
+//  font-family: Calibri, Arial, Helvetica, sans-serif;
+//  font-size: 13px;
+//  font-weight: bold;
+//  color: #404040;
+//  padding: 2px 8px;
+//  border-bottom: 2px solid #aaaaaa;
+//}
 #questionListTable td
   {
   font-size: 13px;
@@ -28,6 +28,12 @@
   color: #404040;
   padding: 4px 8px;
 }
+
+//#questionListTable tr
+//  {
+//  border-bottom: 1px solid #EEEEEE;
+//}
+
 
 #questionListTable a {
   color: #404040;
@@ -38,4 +44,17 @@
   cursor:pointer;
   color: #404040;
   font-weight: bold;
+}
+
+.questionTd {
+  width: 5%;
+}
+
+.imgTd {
+  width: 5%;
+}
+
+.cardTd {
+  width: 10%;
+  margin-left: 10px;
 }

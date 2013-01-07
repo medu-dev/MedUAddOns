@@ -59,6 +59,17 @@ class QuestionAdminHelperTest < ActionView::TestCase
     assert_equal(true, all.length == 2)
   end
 
+  def test_select_no_relationships
+    question = QuestionAdminHelper.create_question(@body)
+
+    assert_equal(true, question.id > 0)
+    assert_equal(true, question.body == @body)
+
+    all = QuestionAdminHelper.select_all()
+    assert_equal(true, all.length == 1)
+  end
+
+
   def test_select_relationships_for_card
     question = QuestionAdminHelper.create_question(@body)
 

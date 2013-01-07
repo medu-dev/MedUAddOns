@@ -3,11 +3,11 @@ class CardQuestionsController < ApplicationController
   #QUESTIONS_TEMPLATE_PATH = "app/assets/javascripts/embedquestions.js"
   QUESTIONS_TEMPLATE_PATH = "public/javascript/embedquestions.js"
 
-  TITLE_1 = "didn't like it"
-  TITLE_2 = "it was ok"
-  TITLE_3 = "liked it"
-  TITLE_4 = "really liked it"
-  TITLE_5 = "it was amazing"
+  TITLE_1 = "one"
+  TITLE_2 = "two"
+  TITLE_3 = "three"
+  TITLE_4 = "four"
+  TITLE_5 = "five"
 
   def init
     var = ""

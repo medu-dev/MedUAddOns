@@ -1,47 +1,206 @@
 <script type="text/javascript">
 
+  var add_icon = "/assets/add.png";
+  var delete_icon = "/assets/delete.png";
+
   function addQuestion() {
+    setTitle("Add a question");
+    currentQuestionMode.makeAdd();
+    clearQuestion();
+    clearQuestionId();
     showQuestionDialog();
+  }
+
+  function editQuestion(id, question) {
+    setTitle("Edit question");
+    currentQuestionMode.makeEdit();
+    setQuestion(question);
+    setQuestionId(id);
+    showQuestionDialog();
+  }
+
+  function fillQuestionList(questions) {
+
+    var table = document.getElementById("questionListTable")
+
+    // Remove all table rows
+    var tableRows = table.rows;
+    for (var i = tableRows.length-1; i >= 0; i--) {
+      table.deleteRow(i);
+    }
+
+    if(questions.length == 0)  {
+      var r = createTableRow(table, "");
+      createTextCell(r, "", "No questions have been created, use the button to add one", "");
+      return;
+    }
+
+    var lastQuestionId = "";
+    var rowCount = 0;
+    var row;
+    var imgWidth = "25px";
+    var bodyWidth = "250px";
+
+    for(i=0; i < questions.length; i++) {
+
+      if(questions[i].questions_id != lastQuestionId) {
+        var row = createTableRow(table, (rowCount % 2 != 0) ? 'odd':'');
+        rowCount++;
+
+        var link = createAnchor(questions[i].body, questions[i].questions_id);
+        createElementCell(row, "", link, bodyWidth);
+        lastQuestionId = questions[i].questions_id;
+
+        var img = createAddCardImg(questions[i].questions_id);
+        createElementCell(row, "", img, imgWidth);
+
+        img = createDeleteQuestionImg(questions[i].questions_id);
+        createElementCell(row, "", img, imgWidth);
+      }
+
+      if(questions[i].card_id != null) {
+
+        row = createTableRow(table, (rowCount % 2 != 0) ? 'odd':'');
+        rowCount++;
+        createTextCell(row, "", questions[i].card_id, bodyWidth);
+
+        var img = createDeleteRelationshipImg(questions[i].relation_id);
+        createElementCell(row, "", img, "imgWidth");
+        createTextCell(row, "", "", "imgWidth");
+      }
+    }
+  }
+
+  function createAnchor(question, id) {
+    var anchor = document.createElement('a');
+
+    anchor.innerHTML ="<span class='categorySpan'> "+question +"</span>";
+
+    anchor.onclick = function() {editQuestion(id, question);};
+
+    return anchor;
+  }
+
+  function createImg(src, title) {
+    var img = document.createElement('img');
+
+    img.src = src;
+    img.style.cursor="pointer";
+    img.style.display = "block";
+    img.title = title;
+    return img;
+  }
+
+  function createDeleteQuestionImg(id) {
+    var img = createImg(delete_icon, "Delete this question")
+    img.onclick = function() {deleteQuestion(id);};
+
+    return img;
+  }
+
+  function deleteQuestion(id) {
+    if(confirm("Delete this question?")) {
+      doDelete("delete_question", id, "Deleting question...")
+    }
+  }
+
+  function deleteRelationship(id) {
+    if(confirm("By removing this card id this question will no longer appear on the card. Proceed?")) {
+      doDelete("delete_relationship", id, "Deleting card from question...")
+    }
+  }
+
+  function createDeleteRelationshipImg(id) {
+    var img = createImg(delete_icon, "Remove this card id. Then the question will no longer appear on this card")
+    img.onclick = function() {deleteRelationship(id);};
+
+    return img;
+  }
+
+  function createAddCardImg(id) {
+    var img = createImg(add_icon, "Add a card id. Then this question will appear on that card. ")
+    img.onclick = function() {addCard(id);};
+
+    return img;
+  }
+
+  function addCard(question_id) {
+    clearCard();
+    setQuestionId(question_id);
+    showCardDialog();
+
+  }
+
+  function getAll() {
+
+    showProgressDialog("Getting questions...");
+
+    $.ajax({
+      url: "get_all",
+      dataType: 'json',
+      success: function(data, status, xhr) {
+        if(hasErrors(data))
+          return false;
+
+        hideProgressDialog();
+        fillQuestionList(data.message);
+      },
+      error: function(xhr, status, error) {
+        showMsg(error);
+      }
+    });
+  }
+
+  function doDelete(url, id, msg)  {
+    showProgressDialog(msg);
+
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      type: "POST",
+      data:  {
+        id: id
+      },
+      success: function(data, status, xhr) {
+        if(hasErrors(data))
+          return false;
+
+        hideProgressDialog();
+        fillQuestionList(data.message);
+      },
+      error: function(xhr, status, error) {
+        showMsg(error);
+      }
+    });
+
   }
 
   $(document).ready(function(){
     createProgressDialog();
     createQuestionDialog();
+    createCardDialog();
+    getAll();
   });
 
 </script>
+
+<div class="headerDiv">
+  <img class="headerImg" src="/assets/addons_logo.png"/>
+</div>
 
 <div style="margin: 10px 5px;">
   <button type="button" onclick="addQuestion()">Add a question</button>
 </div>
 
-<table id="questionListTable">
-<% if @all_questions.length > 0 %>
-    <tr>
-      <th>Question</th>
-      <th>Card Id</th>
-    </tr>
-    <% count = 0 %>
-    <% @all_questions.each do |value| %>
-      <tr class="<%=count % 2 > 0 ? 'odd':''%>">
-        <td><%=value["body"]%></td>
-        <td><%=value["card_id"]%></td>
-        <% count += 1 %>
-      </tr>
-    <%end%>
- <%else%>
-  <tr><td>No questions have been created</td></tr>
- <%end%>
-</table>
+<table id="questionListTable"></table>
+
 <div id="progressDlg">
   <div id="progressText" ></div>
   <img src="/assets/progress.gif"/>
 </div>
 <div id="questionDlg">
-  <b>Add a question</b><br/>
-
-  Question:<br/>
-  <textarea id="questionBody" rows="2" style="width:90%; padding:2px;"></textarea><br/>
-
-  Card Id: <input type="text" id="cardId"/> <br/>
+  <textarea id="questionBody" rows="2" style="width:90%; padding:2px;"></textarea>
+</div>
+<div id="cardDlg">
+  <input type="text" id="cardBody" style="width:90%; padding:2px;">
 </div>
