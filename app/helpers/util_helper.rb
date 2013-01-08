@@ -3,12 +3,14 @@ module UtilHelper
   # commont parameters
   PARAM_CARDID = "cardid"
   PARAM_USERID = "userid"
+  PARAM_COURSEID = "courseid"
   PARAM_QUESTIONID = "questionid"
   PARAM_SCORE = "score"
 
   # substitution parameters
   SUB_CARDID = "<<CARDID>>"
   SUB_USERID = "<<USERID>>"
+  SUB_COURSEID = "<<COURSEID>>"
   SUB_HOSTNAME = "<<HOSTNAME>>"
 
   # host names
@@ -56,6 +58,10 @@ module UtilHelper
 
   def self.replace_user_id_tag(text, user_id)
     replace_tag(text, SUB_USERID, user_id)
+  end
+
+  def self.replace_course_id_tag(text, card_id)
+    replace_tag(text, SUB_COURSEID, card_id)
   end
 
   def self.get_user_id(params)

@@ -10,6 +10,7 @@ class CardQuestionsHelperTest < ActionController::TestCase
     @user_id = 345
     @score = "5"
     @unknown_user = UtilHelper::UNKNOWN_USER
+    @course_id = 12345
   end
 
 
@@ -29,6 +30,7 @@ class CardQuestionsHelperTest < ActionController::TestCase
     answer.question_id = question.id
     answer.score = @score.to_i
     answer.user_id  = @user_id
+    answer.course_id = @course_id
     answer.save
 
     answer2 = Answer.find_by_user_id(@user_id)
@@ -37,6 +39,7 @@ class CardQuestionsHelperTest < ActionController::TestCase
     assert_equal(true, answer2.card_id == @cardid_1)
     assert_equal(true, answer2.question_id == question.id)
     assert_equal(true, answer2.user_id == @user_id)
+    assert_equal(true, answer2.course_id == @course_id)
 
 
     answer3 = CardQuestionsHelper.get_answer(question.id, @user_id, @cardid_1)
@@ -45,6 +48,7 @@ class CardQuestionsHelperTest < ActionController::TestCase
     assert_equal(true, answer3.card_id == @cardid_1)
     assert_equal(true, answer3.question_id == question.id)
     assert_equal(true, answer3.user_id == @user_id)
+    assert_equal(true, answer3.course_id == @course_id)
 
   end
 

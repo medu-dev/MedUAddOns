@@ -8,6 +8,7 @@ class UtilHelperTest < ActionView::TestCase
     @cardid_2 = 48
     @body = "Why id the chicken cross the road?"
     @body2 = "Will we go over the fiscal cliff?"
+    @courseid = 1620
   end
 
   def test_is_card_supported
@@ -113,5 +114,27 @@ class UtilHelperTest < ActionView::TestCase
 
     assert_equal(hostname, UtilHelper::LOCALHOST)
   end
+
+  def test_replace_course_id_tag
+    str = "Now is the time "+ UtilHelper::SUB_COURSEID+ "xyzzy"
+    course_id = "47"
+
+    found = UtilHelper.replace_course_id_tag(str, course_id)
+
+    assert_not_nil(found)
+    assert_equal(true, str.include?(course_id))
+    assert_equal(true, str.include?(course_id+"xyzzy"))
+
+  end
+
+  def test_replace_no_course_id_tag
+    str = "Now is the time "
+    course_id = "47"
+
+    found = UtilHelper.replace_course_id_tag(str, course_id)
+
+    assert_nil(found)
+  end
+
 
 end

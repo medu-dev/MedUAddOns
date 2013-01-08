@@ -1,5 +1,6 @@
 var currentCardid = "";
 var currentUserId = "";
+var currentCourseId = "";
 
 function getRating(id, question_id) {
   var score = $("#"+id).val();
@@ -11,6 +12,7 @@ function getRating(id, question_id) {
     data:  {
       score: score,
       cardid: currentCardid,
+      courseid: currentCourseId,
       userid: currentUserId,
       questionid: question_id
     },

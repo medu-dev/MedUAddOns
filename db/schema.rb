@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227151617) do
+ActiveRecord::Schema.define(:version => 20130108143303) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121227151617) do
     t.integer  "card_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "course_id"
   end
 
   add_index "answers", ["card_id"], :name => "index_answers_on_card_id"

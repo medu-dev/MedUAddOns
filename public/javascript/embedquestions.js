@@ -27,7 +27,7 @@ function createIFrame() {
     element.style.height = "327px;";
     element.width="100%";
     element.src="http://<<HOSTNAME>>" +
-        "/card_questions/show?cardid=<<CARDID>>&userid=<<USERID>>";
+        "/card_questions/show?cardid=<<CARDID>>&userid=<<USERID>>&courseid=<<COURSEID>>";
     element.scrolling="no";
     element.horizontalscrolling="no";
     element.verticalscrolling="no";

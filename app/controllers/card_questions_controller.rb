@@ -15,10 +15,12 @@ class CardQuestionsController < ApplicationController
     if UtilHelper.is_card_supported(params)
       begin
         card_id = params[UtilHelper::PARAM_CARDID]
+        course_id = params[UtilHelper::PARAM_COURSEID]
         user_id = UtilHelper.get_user_id(params)
 
         var = UtilHelper.read_template(QUESTIONS_TEMPLATE_PATH)
         var = UtilHelper.replace_card_id_tag(var, card_id)
+        var = UtilHelper.replace_course_id_tag(var, course_id)
         var = UtilHelper.replace_user_id_tag(var, user_id)
         var = UtilHelper.replace_hostname(var)
 
@@ -34,6 +36,7 @@ class CardQuestionsController < ApplicationController
 
   def show
     @card_id = params[UtilHelper::PARAM_CARDID]
+    @course_id = params[UtilHelper::PARAM_COURSEID]
     @user_id = UtilHelper.get_user_id(params)
     @questions = nil
     @runtime_envrironment = RunTimeEnvironment.get_runtime_environment();
@@ -55,6 +58,7 @@ class CardQuestionsController < ApplicationController
       user_id = params[UtilHelper::PARAM_USERID]
       question_id = params[UtilHelper::PARAM_QUESTIONID].to_i
       score = params[UtilHelper::PARAM_SCORE].to_i
+      course_id = params[UtilHelper::PARAM_COURSEID].to_i
 
       # check to see if the user is updating an existing answer or creating a new one
       if(user_id != UtilHelper::UNKNOWN_USER)
@@ -72,6 +76,7 @@ class CardQuestionsController < ApplicationController
       end
 
       answer.score = score
+      answer.course_id = course_id
       answer.save
 
       response = AjaxResponse.new(AjaxResponse::SUCCESS, "success")
