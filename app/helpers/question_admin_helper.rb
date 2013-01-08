@@ -9,10 +9,11 @@ module QuestionAdminHelper
     return question
   end
 
-  def self.create_relationship(question_id, card_id)
+  def self.create_relationship(question_id, card_id, course_id)
     relation = QuestionCard.new
     relation.question_id = question_id
     relation.card_id = card_id
+    relation.course_id = course_id
 
     relation.save
 
@@ -24,9 +25,11 @@ module QuestionAdminHelper
   end
 
   def self.select_all()
-    sql = "SELECT questions.id AS questions_id, questions.body, question_cards.card_id,  question_cards.id AS relation_id "
+    sql = "SELECT questions.id AS questions_id, questions.body, question_cards.card_id,  question_cards.id AS relation_id, "
+    sql << "courses.course_name AS course_name "
     sql << "FROM questions LEFT OUTER JOIN question_cards ON question_cards.question_id = questions.id "
-    sql << "ORDER BY questions.id"
+    sql << "LEFT OUTER JOIN courses ON question_cards.course_id = courses.course_id "
+    sql << "ORDER BY questions.id, course_name"
 
     all = Question.find_by_sql(sql)
 

@@ -1,0 +1,91 @@
+2120:
+  course_id: 2120
+  course_name: CLIPP Instructor
+
+2440:
+  course_id: 2440
+  course_name: CLIPP Individual Subscriber
+
+2800:
+  course_id: 2800
+  course_name: SIMPLE Instructor
+
+2820:
+  course_id: 2820
+  course_name: SIMPLE
+
+3381:
+  course_id: 3381
+  course_name: Authoring Case
+
+3420:
+  course_id: 3420
+  course_name: CLIPP
+
+3500:
+  course_id: 3500
+  course_name: fmCASES Instructor
+
+3641:
+  course_id: 3641
+  course_name: WISE-MD
+
+3660:
+  course_id: 3660
+  course_name: WISE-MD Instructor
+
+3840:
+  course_id: 3840
+  course_name: fmCASES
+
+3880:
+  course_id: 3880
+  course_name: eCLIPPS
+
+4040:
+  course_id: 4040
+  course_name: SIMPLE Individual Subscriber
+
+4041:
+  course_id: 4041
+  course_name: WISE-MD Individual Subscriber
+
+5760:
+  course_id: 5760
+  course_name: fmCASES Individual Subscriber
+
+6100:
+  course_id: 6100
+  course_name: CORE Instructor-Original
+
+6101:
+  course_id: 6101
+  course_name: CORE Instructor
+
+6220:
+  course_id: 6220
+  course_name: CORE
+
+6660:
+  course_id: 6660
+  course_name: Original CORE
+
+7022:
+  course_id: 7022
+  course_name: CLIPP Oral Presentation Case
+
+38:
+  course_id: 38
+  course_name: fmCASES Exam Scoring Service
+
+34:
+  course_id: 34
+  course_name: CLIPP Exam Scoring Service
+
+2340:
+  course_id: 2340
+  course_name: eCLIPPs Instructor
+
+6221:
+  course_id: 6221
+  course_name: CORE Individual Subscriber

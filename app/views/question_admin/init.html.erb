@@ -2,6 +2,8 @@
 
   var add_icon = "/assets/add.png";
   var delete_icon = "/assets/delete.png";
+  var card_delete_icon = "/assets/page_delete.png";
+  var noSelection = -1;
 
   function addQuestion() {
     setTitle("Add a question");
@@ -62,7 +64,8 @@
 
         row = createTableRow(table, (rowCount % 2 != 0) ? 'odd':'');
         rowCount++;
-        createTextCell(row, "", questions[i].card_id, bodyWidth);
+        var cardText = questions[i].course_name + ": " + questions[i].card_id;
+        createTextCell(row, "", cardText, bodyWidth);
 
         var img = createDeleteRelationshipImg(questions[i].relation_id);
         createElementCell(row, "", img, "imgWidth");
@@ -111,7 +114,7 @@
   }
 
   function createDeleteRelationshipImg(id) {
-    var img = createImg(delete_icon, "Remove this card id. Then the question will no longer appear on this card")
+    var img = createImg(card_delete_icon, "Remove this card id. Then the question will no longer appear on this card")
     img.onclick = function() {deleteRelationship(id);};
 
     return img;
@@ -144,9 +147,30 @@
 
         hideProgressDialog();
         fillQuestionList(data.message);
+        getCourses();
       },
       error: function(xhr, status, error) {
         showMsg(error);
+      }
+    });
+  }
+
+  function getCourses() {
+//    showProgressDialog("Getting course list...");
+
+    $.ajax({
+      url: "get_courses",
+      dataType: 'json',
+      success: function(data, status, xhr) {
+        if(hasErrors(data))
+          return false;
+
+//        hideProgressDialog();
+        setSelectList(data.message, "");
+      },
+      error: function(xhr, status, error) {
+        showMsg(error);
+        setSelectList("", "");
       }
     });
   }
@@ -172,8 +196,25 @@
         showMsg(error);
       }
     });
-
   }
+
+  function setSelectList(optionList, selected) {
+    var noValue = "No selection";
+    var element = $("#courseSelection");
+    element.empty();
+
+    if(optionList != null) {
+      element.append("<option " + (selected == noSelection ? "selected='true'" : "")  + " value='" + noSelection + "'>" + noValue + "</option>");
+      for(i = 0; i < optionList.length; i++) {
+        element.append("<option " + (optionList[i] == selected ? "selected='true'" : "")  + " value='" + optionList[i].course_id + "'>" + optionList[i].course_name + "</option>");
+
+      }
+    }
+    else {
+      element.append("<option value='" + noSelection + "'>" + noValue + "</option>");
+    }
+  }
+
 
   $(document).ready(function(){
     createProgressDialog();
@@ -192,7 +233,9 @@
   <button type="button" onclick="addQuestion()">Add a question</button>
 </div>
 
-<table id="questionListTable"></table>
+<div style="height: 90%;overflow: auto;">
+  <table id="questionListTable"></table>
+</div>
 
 <div id="progressDlg">
   <div id="progressText" ></div>
@@ -202,5 +245,6 @@
   <textarea id="questionBody" rows="2" style="width:90%; padding:2px;"></textarea>
 </div>
 <div id="cardDlg">
+  <select id="courseSelection"></select>
   <input type="text" id="cardBody" style="width:90%; padding:2px;">
 </div>

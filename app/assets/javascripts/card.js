@@ -16,6 +16,12 @@ function createCardDialog() {
 
 var doValidateCard = function () {
   var value = $("#cardBody").val();
+  var course_id = $("#courseSelection").val();
+
+  if(course_id == noSelection) {
+    alert("Please select a course");
+    return false;
+  }
 
   if(value == undefined || value.trim().length == 0)  {
     alert("Please enter a value");
@@ -36,6 +42,7 @@ var doValidateCard = function () {
     type: "POST",
     data:  {
       card_id: value.trim(),
+      course_id: course_id,
       question_id: questionId
     },
     success: function(data, status, xhr) {

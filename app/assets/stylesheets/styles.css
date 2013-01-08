@@ -1,6 +1,6 @@
 
 .headerDiv {
-  width: 90%;
+  width: 40%;
   border-bottom: 2px solid #aaaaaa;
   margin-bottom: 10px;
   font-family: Calibri, Arial, Helvetica, sans-serif;
@@ -11,3 +11,9 @@
   margin:0;
   padding:0;
 }
+
+.questionText {
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 9pt;
+}
+

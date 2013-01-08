@@ -7,6 +7,7 @@ class QuestionAdminHelperTest < ActionView::TestCase
     @cardid_2 = 48
     @body = "Why id the chicken cross the road?"
     @body2 = "Will we go over the fiscal cliff?"
+    @course_id = 3420
   end
 
   def test_create_question
@@ -22,10 +23,11 @@ class QuestionAdminHelperTest < ActionView::TestCase
     assert_equal(true, question.id > 0)
     assert_equal(true, question.body == @body)
 
-    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1)
+    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1, @course_id)
     assert_equal(true, relationship.id > 0)
     assert_equal(true, relationship.question_id == question.id)
     assert_equal(true, relationship.card_id == @cardid_1)
+    assert_equal(true, relationship.course_id == @course_id)
   end
 
   def test_select_question_by_id
@@ -45,18 +47,38 @@ class QuestionAdminHelperTest < ActionView::TestCase
     assert_equal(true, question.id > 0)
     assert_equal(true, question.body == @body)
 
-    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1)
+    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1, @course_id)
     assert_equal(true, relationship.id > 0)
     assert_equal(true, relationship.question_id == question.id)
     assert_equal(true, relationship.card_id == @cardid_1)
+    assert_equal(true, relationship.course_id == @course_id)
 
-    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_2)
+    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_2, @course_id)
     assert_equal(true, relationship.id > 0)
     assert_equal(true, relationship.question_id == question.id)
     assert_equal(true, relationship.card_id == @cardid_2)
+    assert_equal(true, relationship.course_id == @course_id)
 
     all = QuestionAdminHelper.select_all()
     assert_equal(true, all.length == 2)
+  end
+
+  def test_correct_course_name
+    question = QuestionAdminHelper.create_question(@body)
+
+    assert_equal(true, question.id > 0)
+    assert_equal(true, question.body == @body)
+
+    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1, @course_id)
+    assert_equal(true, relationship.id > 0)
+    assert_equal(true, relationship.question_id == question.id)
+    assert_equal(true, relationship.card_id == @cardid_1)
+    assert_equal(true, relationship.course_id == @course_id)
+
+
+    all = QuestionAdminHelper.select_all()
+    assert_equal(true, all.length == 1)
+    assert_equal(true, all[0].course_name == "CLIPP")
   end
 
   def test_select_no_relationships
@@ -81,15 +103,17 @@ class QuestionAdminHelperTest < ActionView::TestCase
     assert_equal(true, question2.id > 0)
     assert_equal(true, question2.body == @body2)
 
-    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1)
+    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1, @course_id)
     assert_equal(true, relationship.id > 0)
     assert_equal(true, relationship.question_id == question.id)
     assert_equal(true, relationship.card_id == @cardid_1)
+    assert_equal(true, relationship.course_id == @course_id)
 
-    relationship = QuestionAdminHelper.create_relationship(question2.id, @cardid_1)
+    relationship = QuestionAdminHelper.create_relationship(question2.id, @cardid_1, @course_id)
     assert_equal(true, relationship.id > 0)
     assert_equal(true, relationship.question_id == question2.id)
     assert_equal(true, relationship.card_id == @cardid_1)
+    assert_equal(true, relationship.course_id == @course_id)
 
     all = QuestionAdminHelper.select_questions_for_card(@cardid_1)
     assert_equal(true, all.length == 2)

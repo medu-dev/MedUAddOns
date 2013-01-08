@@ -20,10 +20,11 @@ class CardQuestionsHelperTest < ActionController::TestCase
     assert_equal(true, question.id > 0)
     assert_equal(true, question.body == @body)
 
-    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1)
+    relationship = QuestionAdminHelper.create_relationship(question.id, @cardid_1, @course_id)
     assert_equal(true, relationship.id > 0)
     assert_equal(true, relationship.question_id == question.id)
     assert_equal(true, relationship.card_id == @cardid_1)
+    assert_equal(true, relationship.course_id == @course_id)
 
     answer = Answer.new
     answer.card_id = @cardid_1

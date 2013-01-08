@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108143303) do
+ActiveRecord::Schema.define(:version => 20130108185030) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -24,14 +24,23 @@ ActiveRecord::Schema.define(:version => 20130108143303) do
   end
 
   add_index "answers", ["card_id"], :name => "index_answers_on_card_id"
+  add_index "answers", ["course_id"], :name => "index_answers_on_course_id"
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
   add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
+
+  create_table "courses", :force => true do |t|
+    t.integer  "course_id"
+    t.string   "course_name", :limit => 1024
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
 
   create_table "question_cards", :force => true do |t|
     t.integer  "question_id"
     t.integer  "card_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "course_id"
   end
 
   add_index "question_cards", ["question_id"], :name => "index_question_cards_on_question_id"

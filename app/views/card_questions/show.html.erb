@@ -8,10 +8,11 @@
 </script>
 
 <% if @questions != nil %>
+  <div class="topDiv">
   <% @questions.each do |question| %>
     <div class="rating">
       <% question_id =  question['questions_id']%>
-      <div class="question_div"><%=  question["body"] %> &nbsp;</div>
+      <div class="question_div"><span class="questionText"><%=  question["body"] %> &nbsp;</span></div>
 
       <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_5") %>" name="<%= CardQuestionsHelper.make_name(question_id) %>" class="rating" value="5" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_5") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_5") %>', '<%= question_id %>')" title="<%=CardQuestionsController::TITLE_5%>">5 stars</label>
       <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_4") %>" name="<%= CardQuestionsHelper.make_name(question_id) %>" class="rating" value="4" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_4") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_4") %>', '<%= question_id %>')" title="<%=CardQuestionsController::TITLE_4%>">4 stars</label>
@@ -21,6 +22,7 @@
     </div>
     <div class="question_footer"></div>
     <br/>
-  <% end %>
 
+  <% end %>
+  </div>
 <% end %>

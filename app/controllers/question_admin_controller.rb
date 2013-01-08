@@ -7,12 +7,24 @@ class QuestionAdminController < ApplicationController
   def get_all
 
     begin
-
       all = QuestionAdminHelper.select_all()
       response = AjaxResponse.new(AjaxResponse::SUCCESS, all)
 
     rescue Exception => exception
       logger.error "---- Exception: question_admin/get_all " + exception.to_s
+      response = AjaxResponse.new(AjaxResponse::ERROR, exception.to_s)
+    end
+
+    render json: response
+  end
+
+  def get_courses
+    begin
+      all = CourseHelper.select_all()
+      response = AjaxResponse.new(AjaxResponse::SUCCESS, all)
+
+    rescue Exception => exception
+      logger.error "---- Exception: question_admin/get_courses " + exception.to_s
       response = AjaxResponse.new(AjaxResponse::ERROR, exception.to_s)
     end
 
@@ -104,10 +116,11 @@ class QuestionAdminController < ApplicationController
 
     question_id = params["question_id"];
     card_id = params["card_id"]
+    course_id = params["course_id"]
 
     begin
       # create the relationship
-      QuestionAdminHelper.create_relationship(question_id.to_i, card_id.to_i)
+      QuestionAdminHelper.create_relationship(question_id.to_i, card_id.to_i, course_id.to_i)
       all = QuestionAdminHelper.select_all()
       response = AjaxResponse.new(AjaxResponse::SUCCESS, all)
 
