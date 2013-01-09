@@ -62,6 +62,12 @@ got this css from: http://lea.verou.me/2011/08/accessible-star-rating-widget-wit
   float:left;
 }
 
+.questionText {
+  display:block;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 10pt;
+}
+
 /* using this puts a break between each question and ratings element pairs*/
 .question_footer {
   clear: both;

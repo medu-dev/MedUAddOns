@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html">
 
   currentCardid = "<%=@card_id%>";
   currentUserId = "<%=@user_id%>";
@@ -10,10 +10,10 @@
 <% if @questions != nil %>
   <div class="topDiv">
   <% @questions.each do |question| %>
-    <div class="rating">
+      <div class="questionText"><%=  question["body"] %> &nbsp;</div>
+      <div class="rating">
       <% question_id =  question['questions_id']%>
-      <div class="question_div"><span class="questionText"><%=  question["body"] %> &nbsp;</span></div>
-
+      <div class="question_div"></div>
       <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_5") %>" name="<%= CardQuestionsHelper.make_name(question_id) %>" class="rating" value="5" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_5") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_5") %>', '<%= question_id %>')" title="<%=CardQuestionsController::TITLE_5%>">5 stars</label>
       <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_4") %>" name="<%= CardQuestionsHelper.make_name(question_id) %>" class="rating" value="4" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_4") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_4") %>', '<%= question_id %>')" title="<%=CardQuestionsController::TITLE_4%>">4 stars</label>
       <input type="radio" id="<%= CardQuestionsHelper.make_id(question_id,"_3") %>" name="<%= CardQuestionsHelper.make_name(question_id) %>" class="rating" value="3" /><label for="<%= CardQuestionsHelper.make_id(question_id,"_3") %>" onclick="getRating('<%= CardQuestionsHelper.make_id(question_id,"_3") %>', '<%= question_id %>')" title="<%=CardQuestionsController::TITLE_3%>">3 stars</label>
