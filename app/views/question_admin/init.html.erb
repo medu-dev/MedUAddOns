@@ -215,7 +215,6 @@
     }
   }
 
-
   $(document).ready(function(){
     createProgressDialog();
     createQuestionDialog();
@@ -224,17 +223,37 @@
   });
 
 </script>
-
 <div class="headerDiv">
   <img class="headerImg" src="/assets/addons_logo.png"/>
 </div>
 
-<div style="margin: 10px 5px;">
-  <button type="button" onclick="addQuestion()">Add a question</button>
+<div class="leftPanel">
+  <div class="introDiv">
+      Use this page to add questions to individual cards for cases.  First create or edit a question and then associate it with one
+      or more cards.  Once you have made the association with a card the question will appear at the bottom of the card.
+      <p/>
+      See the help for a detailed explanation of how all this works.
+  </div>
+
+  <div style="margin: 10px 5px;">
+    <button type="button" onclick="addQuestion()">Add a question</button>
+  </div>
+  <div style="height: 90%;overflow: auto;">
+    <table id="questionListTable"></table>
+  </div>
 </div>
 
-<div style="height: 90%;overflow: auto;">
-  <table id="questionListTable"></table>
+<div class="rightPanel">
+  <div class="introDiv">
+    View the answers here
+  </div>
+  <div style="margin: 10px 5px;">
+    <button type="button" onclick="getAllAnswers()">View answers</button>
+    <button type="button" onclick="create_csv()">Get answers as csv file</button>
+  </div>
+  <div style="height: 90%;overflow: auto;">
+    <table id="answerTable"></table>
+  </div>
 </div>
 
 <div id="progressDlg">
@@ -242,9 +261,13 @@
   <img src="/assets/progress.gif"/>
 </div>
 <div id="questionDlg">
-  <textarea id="questionBody" rows="2" style="width:90%; padding:2px;"></textarea>
+  <textarea id="questionBody" rows="3" style="width:100%; padding:2px;"></textarea>
 </div>
 <div id="cardDlg">
   Select a course:&nbsp;<select id="courseSelection"></select> </p>
-  Type in a card id:&nbsp;<input type="text" id="cardBody" style="width:90%; padding:2px;">
+  Enter a card id:&nbsp;<input type="text" id="cardBody" style="width:100%; padding:2px;">
 </div>
+
+<form id="downloadCSVForm" action="/question_admin/download_csv" method="get">
+  <input type="hidden" name="downloadFilename" id="dlfId" value="">
+</form>

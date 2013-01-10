@@ -10,7 +10,7 @@ function createQuestionDialog() {
         modal: true,
         show: true,
         hide: true,
-        width: 400,
+        width: 550,
         title: "Add a question",
         buttons: { "Save": doValidate , "Cancel": function() { $(this).dialog("close"); } }
       });

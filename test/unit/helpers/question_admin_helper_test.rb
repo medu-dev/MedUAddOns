@@ -121,5 +121,8 @@ class QuestionAdminHelperTest < ActionView::TestCase
     assert_equal(@body2, all[1]["body"])
   end
 
-
+  def test_make_unique_file_identifier
+    identifier = QuestionAdminHelper.get_unique_identifier
+    assert_not_nil(identifier)
+  end
 end

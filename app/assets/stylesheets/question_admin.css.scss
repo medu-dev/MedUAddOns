@@ -8,19 +8,20 @@
   font-size: 13px;
   margin-left:5px;
   margin-bottom: 5px;
-  width: 40%;
+  width: 90%;
   border-collapse: collapse;
   text-align: left;
 }
-//#questionListTable th
-//  {
-//  font-family: Calibri, Arial, Helvetica, sans-serif;
-//  font-size: 13px;
-//  font-weight: bold;
-//  color: #404040;
-//  padding: 2px 8px;
-//  border-bottom: 2px solid #aaaaaa;
-//}
+#questionListTable th
+  {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #404040;
+  padding: 2px 8px;
+  border-bottom: 2px solid #aaaaaa;
+}
+
 #questionListTable td
   {
   font-size: 13px;
@@ -29,15 +30,10 @@
   padding: 4px 8px;
 }
 
-//#questionListTable tr
-//  {
-//  border-bottom: 1px solid #EEEEEE;
-//}
-
-
 #questionListTable a {
-  color: #404040;
+  //color: #404040;
   font-weight: bold;
+  color: #3300CC;
 }
 
 #questionListTable a:hover {
@@ -57,4 +53,33 @@
 .cardTd {
   width: 10%;
   margin-left: 10px;
+}
+
+#answerTable
+  {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  margin-left:5px;
+  margin-bottom: 5px;
+  width: 90%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+#answerTable td
+  {
+  font-size: 13px;
+  font-color: #404040;
+  color: #404040;
+  padding: 4px 8px;
+}
+
+#answerTable th
+  {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #404040;
+  padding: 2px 8px;
+  border-bottom: 2px solid #aaaaaa;
 }

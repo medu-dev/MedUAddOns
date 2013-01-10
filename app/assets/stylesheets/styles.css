@@ -1,9 +1,15 @@
 
 .headerDiv {
-  width: 40%;
+  width: 95%;
   border-bottom: 2px solid #aaaaaa;
   margin-bottom: 10px;
   font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+.introDiv {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  border-bottom: 2px solid #aaaaaa;
 }
 
 .headerImg {
@@ -12,4 +18,13 @@
   padding:0;
 }
 
+.leftPanel {
+  float: left;
+  width:55%;
+}
 
+.rightPanel {
+  float: right;
+  width:40%;
+  margin-left:10px;
+}

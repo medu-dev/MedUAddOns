@@ -47,5 +47,23 @@ module QuestionAdminHelper
     return all
   end
 
+  def self.select_all_answsers()
+
+    sql = "SELECT questions.body, courses.course_name, answers.user_id, answers.score, questions.id AS questions_id, answers.course_id FROM answers "
+    sql << "LEFT OUTER JOIN questions ON questions.id = answers.question_id "
+    sql << "LEFT OUTER JOIN courses ON answers.course_id = courses.course_id "
+    sql << "ORDER BY questions.id, answers.course_id, score "
+
+    results = Answer.find_by_sql(sql)
+
+    return results
+  end
+
+  def self.get_unique_identifier
+    t = Time.now()
+    identifier = t.strftime("%Y%m%d%H%M%S")
+
+    return identifier
+  end
 
 end

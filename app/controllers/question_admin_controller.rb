@@ -1,7 +1,9 @@
+require 'csv'
+
 class QuestionAdminController < ApplicationController
+  @@csv_folder = "public/csv_files/"
 
   def init
-
   end
 
   def get_all
@@ -113,7 +115,6 @@ class QuestionAdminController < ApplicationController
 
 
   def add_relation
-
     question_id = params["question_id"];
     card_id = params["card_id"]
     course_id = params["course_id"]
@@ -130,5 +131,68 @@ class QuestionAdminController < ApplicationController
     end
 
     render json: response
+  end
+
+  def get_all_answers
+    begin
+      all = QuestionAdminHelper.select_all_answsers()
+      response = AjaxResponse.new(AjaxResponse::SUCCESS, all)
+
+    rescue Exception => exception
+      logger.error "---- Exception: question_admin/get_all_answers " + exception.to_s
+      response = AjaxResponse.new(AjaxResponse::ERROR, exception.to_s)
+    end
+
+    render json: response
+  end
+
+  def download_csv
+      filename = params["downloadFilename"]
+      path = @@csv_folder + filename
+      begin
+        # setting :stream to false means that the file will be read in it's entirety before send_file
+        # executes. This allows deleting the file after send_file returns. The problem with this
+        # approach is that if files are large it could cause memory issues on the server and take a
+        # long time.
+        # link about sending files in guides: http://guides.rubyonrails.org/action_controller_overview.html#sending-files
+        send_file(path,
+                  :disposition => "attachment",
+                  :encoding => "utf8",
+                  :type => "text/csv",
+                  :stream =>false)
+
+      File.delete(path)
+
+      rescue Exception => exception
+        logger.error "---- Exception: question_admin/download_csv " + exception.to_s
+      end
+  end
+
+  def create_csv
+    begin
+      csv_folder = "public/csv_files/"
+      results = QuestionAdminHelper.select_all_answsers()
+
+      filename = make_filename()
+
+      CSV.open(@@csv_folder + filename, "w") do |csv|
+        csv << ["Question", "Course", "Answer",  "User Id"]
+        for r in results
+          csv << [ r.body, r.course_name, r.score, r.user_id ]
+        end
+      end
+        response = AjaxResponse.new(AjaxResponse::SUCCESS, filename)
+    rescue Exception => exception
+      logger.error "---- Exception: question_admin/create_csv " + exception.to_s
+      response = AjaxResponse.new(AjaxResponse::ERROR, exception.to_s)
+    end
+    render json: response
+  end
+
+  def make_filename
+    extension = ".csv"
+    identifier = QuestionAdminHelper.get_unique_identifier
+    name = "answers_" + identifier + extension
+    return name
   end
 end
