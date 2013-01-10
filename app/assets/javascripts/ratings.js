@@ -1,6 +1,10 @@
 var currentCardid = "";
 var currentUserId = "";
 var currentCourseId = "";
+var currentCaseName = "";
+var currentCaseId = "";
+var currentCardName = "";
+var currentGroupId = "";
 
 function getRating(id, question_id) {
   var score = $("#"+id).val();
@@ -14,6 +18,10 @@ function getRating(id, question_id) {
       cardid: currentCardid,
       courseid: currentCourseId,
       userid: currentUserId,
+      casename: currentCaseName,
+      caseid: currentCaseId,
+      cardname: currentCardName,
+      groupid: currentGroupId,
       questionid: question_id
     },
     success: function(data, status, xhr) {

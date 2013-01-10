@@ -6,12 +6,20 @@ module UtilHelper
   PARAM_COURSEID = "courseid"
   PARAM_QUESTIONID = "questionid"
   PARAM_SCORE = "score"
+  PARAM_CASENAME = "casename"
+  PARAM_CASEID = "caseid"
+  PARAM_CARDNAME = "cardname"
+  PARAM_GROUPID = "groupid"
 
   # substitution parameters
   SUB_CARDID = "<<CARDID>>"
   SUB_USERID = "<<USERID>>"
   SUB_COURSEID = "<<COURSEID>>"
   SUB_HOSTNAME = "<<HOSTNAME>>"
+  SUB_CASENAME = "<<CASENAME>>"
+  SUB_CASEID = "<<CASEID>>"
+  SUB_CARDNAME = "<<CARDNAME>>"
+  SUB_GROUPID = "<<GROUPID>>"
 
   # host names
   LOCALHOST = "localhost:3000"
@@ -72,6 +80,22 @@ module UtilHelper
     end
 
     return user_id
+  end
+
+  def self.replace_case_name_tag(text, case_name)
+    replace_tag(text, SUB_CASENAME, case_name)
+  end
+
+  def self.replace_case_id_tag(text, case_id)
+    replace_tag(text, SUB_CASEID, case_id)
+  end
+
+  def self.replace_card_name_tag(text, card_name)
+    replace_tag(text, SUB_CARDNAME, card_name)
+  end
+
+  def self.replace_group_id_tag(text, group_id)
+    replace_tag(text, SUB_GROUPID, group_id)
   end
 
   def self.replace_hostname(text)

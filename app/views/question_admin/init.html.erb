@@ -215,6 +215,10 @@
     }
   }
 
+  function question_help() {
+    window.open("question_help","","resizable=yes,scrollbars=yes,status=yes,location=yes,menubar=yes,toolbar=yes,width=800,height=500");
+  }
+
   $(document).ready(function(){
     createProgressDialog();
     createQuestionDialog();
@@ -229,10 +233,7 @@
 
 <div class="leftPanel">
   <div class="introDiv">
-      Use this page to add questions to individual cards for cases.  First create or edit a question and then associate it with one
-      or more cards.  Once you have made the association with a card the question will appear at the bottom of the card.
-      <p/>
-      See the help for a detailed explanation of how all this works.
+      Use part of the page to add questions to individual cards for cases. See the <a href="#" onclick="question_help()">help</a> for more information.
   </div>
 
   <div style="margin: 10px 5px;">
@@ -245,7 +246,8 @@
 
 <div class="rightPanel">
   <div class="introDiv">
-    View the answers here
+    View the answers to questions here. <b>View Answers</b> will show the answers on the page. <b>Get answers as csv file</b>
+    will create a csv file which can be downloaded.
   </div>
   <div style="margin: 10px 5px;">
     <button type="button" onclick="getAllAnswers()">View answers</button>

@@ -49,7 +49,8 @@ module QuestionAdminHelper
 
   def self.select_all_answsers()
 
-    sql = "SELECT questions.body, courses.course_name, answers.user_id, answers.score, questions.id AS questions_id, answers.course_id FROM answers "
+    sql = "SELECT questions.body, courses.course_name, answers.user_id, answers.score, questions.id AS questions_id, "
+    sql << "answers.course_id, answers.card_id, answers.card_name, answers.case_name, answers.case_id, answers.group_id FROM answers "
     sql << "LEFT OUTER JOIN questions ON questions.id = answers.question_id "
     sql << "LEFT OUTER JOIN courses ON answers.course_id = courses.course_id "
     sql << "ORDER BY questions.id, answers.course_id, score "

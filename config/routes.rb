@@ -15,6 +15,7 @@ MedUAddOns::Application.routes.draw do
   get "question_admin/get_all_answers"
   get "question_admin/create_csv"
   get "question_admin/download_csv"
+  get "question_admin/question_help"
   post "question_admin/add_question"
   post "question_admin/edit_question"
   post "question_admin/delete_question"

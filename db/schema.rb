@@ -11,16 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108185030) do
+ActiveRecord::Schema.define(:version => 20130110193933) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "card_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "course_id"
+    t.string   "case_name",   :limit => 2048
+    t.integer  "case_id"
+    t.string   "card_name",   :limit => 2048
+    t.integer  "group_id"
   end
 
   add_index "answers", ["card_id"], :name => "index_answers_on_card_id"

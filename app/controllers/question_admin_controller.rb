@@ -176,9 +176,9 @@ class QuestionAdminController < ApplicationController
       filename = make_filename()
 
       CSV.open(@@csv_folder + filename, "w") do |csv|
-        csv << ["Question", "Course", "Answer",  "User Id"]
+        csv << ["Question", "Course", "Answer",  "Card Name", "Card Id", "Case Name", "Case Id", "User Id", "Group Id"]
         for r in results
-          csv << [ r.body, r.course_name, r.score, r.user_id ]
+          csv << [ r.body, r.course_name, r.score, r.card_name, r.card_id, r.case_name, r.case_id, r.user_id, r.group_id ]
         end
       end
         response = AjaxResponse.new(AjaxResponse::SUCCESS, filename)
@@ -194,5 +194,9 @@ class QuestionAdminController < ApplicationController
     identifier = QuestionAdminHelper.get_unique_identifier
     name = "answers_" + identifier + extension
     return name
+  end
+
+  def question_help
+   x = 0
   end
 end
