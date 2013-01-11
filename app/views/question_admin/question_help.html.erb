@@ -1,7 +1,11 @@
 <div class="helpDiv">
 
+  <div class="headerDiv">
+    <img class="headerImg" src="/assets/addons_logo.png"/>
+  </div>
+
   <h1>Managing Questions</h1>
-  This page allows creating, editing and deleting questions that can appear on individual cards in Casus.
+  The questions page allows creating, editing and deleting questions that can appear on individual cards in Casus.
 
   You can define as many questions as you wish (within reason of course) and then assign them to one or more cards.
   <p/>
@@ -9,40 +13,23 @@
 
   <h2>Working with questions</h2>
   Use <button type="button" style="padding:0; margin: 2px, 0px, 2, 0px;">Add a question</button> (at the top of the page) to add a question. A dialog box will appear where you type in the text of the question. Press <b>Save</b> to save the question. At this point the question is saved in the database, but will not appear on any cards.
-  <br/>
-  <b>Changing a question</b> – Click on the body of the question and the dialog box will appear. Change the text and press <b>Save</b>.
-  <br/>
-  <b>Deleting a question</b> – Click <%= image_tag 'delete.png', :alt => 'delete', :class => "helpImg" %> to delete a question. When a question is deleted the association with any cards are removed. In addition if there are any answers recorded for that question they are deleted.
+
+  <h4>Changing a question</h4>Click on the body of the question and the dialog box will appear. Change the text and press <b>Save</b>.
+
+  <h4>Deleting a question</h4>Click <%= image_tag 'delete.png', :alt => 'delete', :class => "helpImg" %> to delete a question. When a question is deleted the association with any cards are removed. In addition if there are any answers recorded for that question they are deleted.
 
   <h2>Working with Cards</h2>
   To make a question appear on a card a casus card id has to be assigned to the question.
   <p>
-  <b>Assigning to questions</b> – Click <%= image_tag 'add.png', :alt => 'add', :class => "helpImg" %>. A dialog box will appear. Enter the course the card is assigned to and the casus card id.  Then click Save. Once the casus id has been assigned to the card the question will appear on the card.
+  <h4>Assigning card ids to questions</h4>Click <%= image_tag 'add.png', :alt => 'add', :class => "helpImg" %>. A dialog box will appear. Enter the course the card is assigned to and the casus card id.  Then click Save. Once the casus id has been assigned to the card the question will appear on the card.
 
   You assign multiple questions to a card by assigning the same card id to one or more questions.
 
-  Removing assignments – Click the remove card icon (img here) to remove an association with a question. Removing an association will not remove an answers associated with the card.
-  Managing Questions
-  This page allows creating, editing and deleting questions that can appear on individual cards in Casus.
-
-  You can define as many questions as you wish (within reason of course) and then assign them to one or more cards.
-
-  When you define a question it is saved in the database, but it doesn’t appear on any cards. However, when you add a card id to a question, then the question will show up on that card.
-
-  Working with questions
-  Use the Add a question button (put in a button) to add a question. A dialog box will appear where you type in the text of the question. Press Save to save the question. At this point the question is saved in the database, but will not appear on any cards.
-
-  Changing a question – click on the body of the question and the dialog box will appear. Change the text and press Save.
-
-  Deleting a question – click the delete icon (img here) to delete a question. When a question is deleted the association with any cards are removed. In addition if there are any answers recorded for that question they are deleted.
-
-  Working with Cards
-  To make a question appear on a card a casus card id has to be assigned to the question.
-
-  Assigning questions – click the add icon (img here). A dialog box will appear. Enter the course the card is assigned to and the casus card id.  Then click Save. Once the casus id has been assigned to the card the question will appear on the card.
-
-  You assign multiple questions to a card by assigning the same card id to one or more questions.
-
-  Removing assignments – Click the remove card icon (img here) to remove an association with a question. Removing an association will not remove an answers associated with the card.
-
+  <h4>Removing assignments</h4> Click <%= image_tag 'page_delete.png', :alt => 'delete card', :class => "helpImg" %> to remove an association with a question. Removing an association will not remove an answers associated with the card.
+  <p>
+    The screen shot below shows the questions page.
+  </p>
+  <div style="margin-top: 3px;">
+    <%= image_tag 'help_questions.png', :alt => 'screenshot', :class => "helpImg" %>
+  </div>
   </div>

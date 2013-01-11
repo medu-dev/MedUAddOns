@@ -161,7 +161,7 @@ class QuestionAdminController < ApplicationController
                   :type => "text/csv",
                   :stream =>false)
 
-      File.delete(path)
+      #File.delete(path)
 
       rescue Exception => exception
         logger.error "---- Exception: question_admin/download_csv " + exception.to_s

@@ -30,29 +30,50 @@
 }
 
 .helpDiv {
-  font-family: Calibri, Arial, Helvetica, sans-serif;
+  color: #333;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
   font-size: 13px;
-  margin: 0, 10px, 0 10px;
-  padding: 0, 10px, 0 10px;
-  width: 80%;
+  padding: 15px;
+  width: 50%;
+  height: 700px;
+  overflow: auto;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #F7FBFA;
+  border-radius: 15px;
 }
 
 h1 {
-  font-family: Calibri, Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 5px, 0, 5px, 0;
-}
-
-h2 {
-  font-family: Calibri, Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  margin: 2px, 0, 2px, 0;
+  color: #111;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0 0 8px 0;
 }
 
 .helpImg {
  margin: 0;
  padding: 0;
  vertical-align:text-bottom;
+}
+
+h2 {
+  color: #666;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 8px 0 5px 0;
+}
+
+h3 {
+  border-bottom: 1px solid #e5e5e5;
+  color: #666;
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0 0 12px 0;
+  padding: 0 0 4px 0;
+}
+
+h4 {
+  color: #666;
+  font-size: 14px;
+  margin: 6px 0 4px 0;
 }
