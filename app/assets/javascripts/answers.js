@@ -64,21 +64,24 @@ function downloadCSV(filename) {
 }
 
 function create_csv() {
-    showProgressDialog("Creating csv file...");
+//    showProgressDialog("Creating csv file...");
+//
+//  $.ajax({
+//    url: "create_csv",
+//    dataType: 'json',
+//    success: function(data, status, xhr) {
+//      if(hasErrors(data))
+//        return false;
+//      $("#streamDownLoadId").submit();
+//      hideProgressDialog();
+//      downloadCSV(data.message);
+//    },
+//    error: function(xhr, status, error) {
+//      showMsg(error);
+//    }
+//  });
 
-  $.ajax({
-    url: "create_csv",
-    dataType: 'json',
-    success: function(data, status, xhr) {
-      if(hasErrors(data))
-        return false;
-      hideProgressDialog();
-      downloadCSV(data.message);
-    },
-    error: function(xhr, status, error) {
-      showMsg(error);
-    }
-  });
+  $("#streamDownLoadId").submit();
 }
 
 

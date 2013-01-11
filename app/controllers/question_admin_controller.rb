@@ -4,6 +4,7 @@ class QuestionAdminController < ApplicationController
   @@csv_folder = "public/csv_files/"
 
   def init
+    x = 0;
   end
 
   def get_all
@@ -170,17 +171,18 @@ class QuestionAdminController < ApplicationController
 
   def create_csv
     begin
-      results = QuestionAdminHelper.select_all_answsers()
-
-      filename = make_filename()
-
-      CSV.open(@@csv_folder + filename, "w") do |csv|
-        csv << ["Question", "Course", "Answer",  "Card Name", "Card Id", "Case Name", "Case Id", "User Id", "Group Id"]
-        for r in results
-          csv << [ r.body, r.course_name, r.score, r.card_name, r.card_id, r.case_name, r.case_id, r.user_id, r.group_id ]
-        end
-      end
-        response = AjaxResponse.new(AjaxResponse::SUCCESS, filename)
+      #results = QuestionAdminHelper.select_all_answsers()
+      #
+      #filename = make_filename()
+      #
+      #CSV.open(@@csv_folder + filename, "w") do |csv|
+      #  csv << ["Question", "Course", "Answer",  "Card Name", "Card Id", "Case Name", "Case Id", "User Id", "Group Id"]
+      #  for r in results
+      #    csv << [ r.body, r.course_name, r.score, r.card_name, r.card_id, r.case_name, r.case_id, r.user_id, r.group_id ]
+      #  end
+      #end
+      #  response = AjaxResponse.new(AjaxResponse::SUCCESS, filename)
+        response = AjaxResponse.new(AjaxResponse::SUCCESS, "success")
     rescue Exception => exception
       logger.error "---- Exception: question_admin/create_csv " + exception.to_s
       response = AjaxResponse.new(AjaxResponse::ERROR, exception.to_s)
@@ -195,7 +197,28 @@ class QuestionAdminController < ApplicationController
     return name
   end
 
+  def stream_download
+    begin
+
+      send_data make_csv(), :type => "text/csv", :filename => make_filename
+      x = 0
+    rescue Exception => exception
+      logger.error "---- Exception: question_admin/create_csv " + exception.to_s
+    end
+  end
+
+  def make_csv
+    results = QuestionAdminHelper.select_all_answsers()
+
+    CSV.generate do |csv|
+      csv << ["Question", "Course", "Answer",  "Card Name", "Card Id", "Case Name", "Case Id", "User Id", "Group Id"]
+      for r in results
+        csv << [ r.body, r.course_name, r.score, r.card_name, r.card_id, r.case_name, r.case_id, r.user_id, r.group_id ]
+      end
+    end
+  end
+
   def question_help
-   x = 0
+
   end
 end

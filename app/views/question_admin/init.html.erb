@@ -43,6 +43,10 @@
     var imgWidth = "25px";
     var bodyWidth = "250px";
 
+    var tableHead = createTableRow(table, (rowCount % 2 != 0) ? 'odd':'');
+    var th = createTextCell(tableHead, "th", "Questions", "");
+    th.colSpan = 3;
+
     for(i=0; i < questions.length; i++) {
 
       if(questions[i].questions_id != lastQuestionId) {
@@ -273,3 +277,5 @@
 <form id="downloadCSVForm" action="/question_admin/download_csv" method="get">
   <input type="hidden" name="downloadFilename" id="dlfId" value="">
 </form>
+
+<form id="streamDownLoadId" action="/question_admin/stream_download" method="get"></form>
