@@ -170,7 +170,6 @@ class QuestionAdminController < ApplicationController
 
   def create_csv
     begin
-      csv_folder = "public/csv_files/"
       results = QuestionAdminHelper.select_all_answsers()
 
       filename = make_filename()

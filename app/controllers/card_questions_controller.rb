@@ -32,6 +32,8 @@ class CardQuestionsController < ApplicationController
         var = UtilHelper.replace_card_name_tag(var, card_name)
         var = UtilHelper.replace_group_id_tag(var, group_id)
 
+        puts ("init.case name:" + case_name)
+
       rescue   Exception => exception
         logger = QuestionLogger.new(QuestionLogger::LOGFILE)
         logger.log_error(exception.to_s)
@@ -52,7 +54,7 @@ class CardQuestionsController < ApplicationController
     @case_id = params[UtilHelper::PARAM_CASEID]
     @card_name = params[UtilHelper::PARAM_CARDNAME]
     @group_id = params[UtilHelper::PARAM_GROUPID]
-
+    puts("show.case name:" + @case_name)
     begin
       @questions = QuestionAdminHelper.select_questions_for_card(@card_id)
     rescue Exception => exception
@@ -76,7 +78,7 @@ class CardQuestionsController < ApplicationController
       card_name = params[UtilHelper::PARAM_CARDNAME]
       group_id = params[UtilHelper::PARAM_GROUPID].to_i
 
-
+      puts("save_answer.case name:" + case_name)
       # check to see if the user is updating an existing answer or creating a new one
       if(user_id != UtilHelper::UNKNOWN_USER)
         answer = CardQuestionsHelper.get_answer(question_id, user_id.to_i, card_id)
