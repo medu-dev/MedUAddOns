@@ -13,8 +13,6 @@ MedUAddOns::Application.routes.draw do
   get "question_admin/get_all"
   get "question_admin/get_courses"
   get "question_admin/get_all_answers"
-  get "question_admin/create_csv"
-  get "question_admin/download_csv"
   get "question_admin/stream_download"
   get "question_admin/question_help"
   post "question_admin/add_question"
