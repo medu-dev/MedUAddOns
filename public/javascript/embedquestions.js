@@ -24,8 +24,7 @@ function createIFrame() {
     element.style.width = "100%";
     element.style.border = "none";
     element.style.overflow = "hidden";
-    element.style.height = "327px;";
-    element.width="100%";
+    element.style.height = "200px";
     element.src="http://<<HOSTNAME>>" +
         "/card_questions/show?cardid=<<CARDID>>&userid=<<USERID>>&courseid=<<COURSEID>>" +
         "&casename=<<CASENAME>>&caseid=<<CASEID>>&cardname=<<CARDNAME>>&groupid=<<GROUPID>>";
