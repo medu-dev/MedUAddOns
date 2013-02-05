@@ -22,7 +22,7 @@ class CardQuestionsController < ApplicationController
         card_name = params[UtilHelper::PARAM_CARDNAME]
         group_id = params[UtilHelper::PARAM_GROUPID]
 
-        logger.error("Card name with quotes:" + params[UtilHelper::PARAM_CARDNAME])
+        logger.error("Card name replace quotes:" + UtilHelper.replace_quote(params[UtilHelper::PARAM_CARDNAME]))
 
         var = UtilHelper.read_template(QUESTIONS_TEMPLATE_PATH)
         var = UtilHelper.replace_card_id_tag(var, card_id)
