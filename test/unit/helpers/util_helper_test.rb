@@ -157,8 +157,36 @@ class UtilHelperTest < ActionView::TestCase
 
     assert_not_nil(found)
     assert_equal(true, found.include?("quotes"+"xyzzy"))
+  end
+
+  def test_replace_quote
+    str = 'now "is" the time'
+    goodstr = 'now is the time'
+    newstr = UtilHelper.replace_quote(str)
+
+    assert_not_nil(newstr)
+    assert_equal(goodstr, newstr)
 
   end
 
+  def test_no_replace_quote
+    str = 'now is the time'
+    goodstr = 'now is the time'
+    newstr = UtilHelper.replace_quote(str)
+
+    assert_not_nil(newstr)
+    assert_equal(goodstr, newstr)
+  end
+
+
+  def test_replace_multiple_quote
+    str = 'now "is" "the" "time'
+    goodstr = 'now is the time'
+    newstr = UtilHelper.replace_quote(str)
+
+    assert_not_nil(newstr)
+    assert_equal(goodstr, newstr)
+
+  end
 
 end

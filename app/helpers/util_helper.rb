@@ -83,7 +83,8 @@ module UtilHelper
   end
 
   def self.replace_case_name_tag(text, case_name)
-    replace_tag(text, SUB_CASENAME, case_name)
+    str = replace_tag(text, SUB_CASENAME, case_name)
+    return replace_quote(str)
   end
 
   def self.replace_case_id_tag(text, case_id)
@@ -91,7 +92,8 @@ module UtilHelper
   end
 
   def self.replace_card_name_tag(text, card_name)
-    replace_tag(text, SUB_CARDNAME, card_name)
+    str = replace_tag(text, SUB_CARDNAME, card_name)
+    return replace_quote(str)
   end
 
   def self.replace_group_id_tag(text, group_id)
@@ -101,6 +103,10 @@ module UtilHelper
   def self.replace_hostname(text)
     hostname = get_hostname
     replace_tag(text, SUB_HOSTNAME, hostname)
+  end
+
+  def self.replace_quote(text)
+    return text.gsub(/"/, "")
   end
 
   def self.get_hostname
