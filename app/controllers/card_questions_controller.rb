@@ -71,9 +71,9 @@ class CardQuestionsController < ApplicationController
       question_id = params[UtilHelper::PARAM_QUESTIONID].to_i
       score = params[UtilHelper::PARAM_SCORE].to_i
       course_id = params[UtilHelper::PARAM_COURSEID].to_i
-      case_name = params[UtilHelper::PARAM_CASENAME]
+      case_name = URI::decode(params[UtilHelper::PARAM_CASENAME])
       case_id = params[UtilHelper::PARAM_CASEID].to_i
-      card_name = params[UtilHelper::PARAM_CARDNAME]
+      card_name = URI::decode(params[UtilHelper::PARAM_CARDNAME])
       group_id = params[UtilHelper::PARAM_GROUPID].to_i
 
       # check to see if the user is updating an existing answer or creating a new one
