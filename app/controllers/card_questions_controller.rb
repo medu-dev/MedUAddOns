@@ -22,12 +22,14 @@ class CardQuestionsController < ApplicationController
         card_name = params[UtilHelper::PARAM_CARDNAME]
         group_id = params[UtilHelper::PARAM_GROUPID]
 
+        case_name = replace_quote(case_name)
+
         var = UtilHelper.read_template(QUESTIONS_TEMPLATE_PATH)
         var = UtilHelper.replace_card_id_tag(var, card_id)
         var = UtilHelper.replace_course_id_tag(var, course_id)
         var = UtilHelper.replace_user_id_tag(var, user_id)
         var = UtilHelper.replace_hostname(var)
-        var = UtilHelper.replace_case_name_tag(var, replace_quote(case_name))
+        var = UtilHelper.replace_case_name_tag(var, case_name)
         var = UtilHelper.replace_case_id_tag(var, case_id)
         var = UtilHelper.replace_card_name_tag(var, card_name)
         var = UtilHelper.replace_group_id_tag(var, group_id)
