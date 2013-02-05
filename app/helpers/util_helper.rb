@@ -83,8 +83,9 @@ module UtilHelper
   end
 
   def self.replace_case_name_tag(text, case_name)
-    sub = replace_tag(text, SUB_CASENAME, case_name)
-    return URI::encode(sub)
+    replace_tag(text, SUB_CASENAME, case_name)
+    #sub = replace_tag(text, SUB_CASENAME, case_name)
+    #return URI::encode(sub)
   end
 
   def self.replace_case_id_tag(text, case_id)
@@ -92,8 +93,9 @@ module UtilHelper
   end
 
   def self.replace_card_name_tag(text, card_name)
-    sub = replace_tag(text, SUB_CARDNAME, card_name)
-    return URI::encode(sub)
+    replace_tag(text, SUB_CARDNAME, card_name)
+    #sub = replace_tag(text, SUB_CARDNAME, card_name)
+    #return URI::encode(sub)
   end
 
   def self.replace_group_id_tag(text, group_id)
