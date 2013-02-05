@@ -22,7 +22,9 @@ class CardQuestionsController < ApplicationController
         card_name = params[UtilHelper::PARAM_CARDNAME]
         group_id = params[UtilHelper::PARAM_GROUPID]
 
-        case_name_no_quote = replace_quote(case_name)
+        logger.error("case name before:" + case_name)
+        replace_quote(case_name)
+        logger.error("case name after:" + case_name)
 
         var = UtilHelper.read_template(QUESTIONS_TEMPLATE_PATH)
         var = UtilHelper.replace_card_id_tag(var, card_id)
