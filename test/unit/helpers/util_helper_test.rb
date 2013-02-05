@@ -165,7 +165,7 @@ class UtilHelperTest < ActionView::TestCase
     newstr = UtilHelper.replace_quote(str)
 
     assert_not_nil(newstr)
-    assert_equal(goodstr, newstr)
+    assert_equal(goodstr, UtilHelper.replace_quote(str))
 
   end
 
