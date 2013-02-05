@@ -140,23 +140,23 @@ class UtilHelperTest < ActionView::TestCase
 
   def test_replace_case_name_tag
     str = 'Now is the time' + UtilHelper::SUB_CASENAME+ "xyzzy"
-    case_name = 'case name with "quotes"'
+    case_name = 'case name with quotes'
 
     found = UtilHelper.replace_case_name_tag(str, case_name)
 
     assert_not_nil(found)
-    assert_equal(true, found.include?("%22quotes%22"+"xyzzy"))
+    assert_equal(true, found.include?("quotes"+"xyzzy"))
 
   end
 
   def test_replace_card_name_tag
     str = 'Now is the time' + UtilHelper::SUB_CARDNAME + "xyzzy"
-    card_name = 'card name with "quotes"'
+    card_name = 'card name with quotes'
 
     found = UtilHelper.replace_card_name_tag(str, card_name)
 
     assert_not_nil(found)
-    assert_equal(true, found.include?("%22quotes%22"+"xyzzy"))
+    assert_equal(true, found.include?("quotes"+"xyzzy"))
 
   end
 
