@@ -137,11 +137,26 @@ class UtilHelperTest < ActionView::TestCase
     assert_nil(found)
   end
 
-  def test_uri_encode
-    script = '<script src="http://immense-journey-3270.herokuapp.com/card_questions/init?cardid=177451&userid=165651&courseid=7653&casename=16-year-old boy''s preparticipation evaluation - Mike&caseid=177430&cardname=Possible "fainting" history&groupid=210" type="text/javascript"></script>'
 
-    s = URI::encode(script)
-    x = 0;
+  def test_replace_case_name_tag
+    str = 'Now is the time' + UtilHelper::SUB_CASENAME+ "xyzzy"
+    case_name = 'case name with "quotes"'
+
+    found = UtilHelper.replace_case_name_tag(str, case_name)
+
+    assert_not_nil(found)
+    assert_equal(true, found.include?("%22quotes%22"+"xyzzy"))
+
+  end
+
+  def test_replace_card_name_tag
+    str = 'Now is the time' + UtilHelper::SUB_CARDNAME + "xyzzy"
+    card_name = 'card name with "quotes"'
+
+    found = UtilHelper.replace_card_name_tag(str, card_name)
+
+    assert_not_nil(found)
+    assert_equal(true, found.include?("%22quotes%22"+"xyzzy"))
 
   end
 
