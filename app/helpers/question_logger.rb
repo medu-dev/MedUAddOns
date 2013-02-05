@@ -7,7 +7,7 @@ class QuestionLogger  < LoggerBase
   end
 
   def format_error_message(error)
-    msg = "Error: " +  DateTime.now.strftime("%Y-%m-%d %H:%M:%S") + " - " + error
+    msg = "Error: " +  DateTime.now.strftime("%Y-%m-%d %H:%M:%S") + " - " + error +"\n"
 
     return msg
   end

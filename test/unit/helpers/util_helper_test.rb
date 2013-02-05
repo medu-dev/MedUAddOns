@@ -137,5 +137,13 @@ class UtilHelperTest < ActionView::TestCase
     assert_nil(found)
   end
 
+  def test_uri_encode
+    script = '<script src="http://immense-journey-3270.herokuapp.com/card_questions/init?cardid=177451&userid=165651&courseid=7653&casename=16-year-old boy''s preparticipation evaluation - Mike&caseid=177430&cardname=Possible "fainting" history&groupid=210" type="text/javascript"></script>'
+
+    s = URI::encode(script)
+    x = 0;
+
+  end
+
 
 end
