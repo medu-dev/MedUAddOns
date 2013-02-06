@@ -17,12 +17,13 @@ class CardQuestionsController < ApplicationController
         card_id = params[UtilHelper::PARAM_CARDID]
         course_id = params[UtilHelper::PARAM_COURSEID]
         user_id = UtilHelper.get_user_id(params)
-        case_name = params[UtilHelper::PARAM_CASENAME]
+        case_name = URI::decode(params[UtilHelper::PARAM_CASENAME])
         case_id = params[UtilHelper::PARAM_CASEID]
-        card_name = params[UtilHelper::PARAM_CARDNAME]
+        card_name = URI::decode(params[UtilHelper::PARAM_CARDNAME])
         group_id = params[UtilHelper::PARAM_GROUPID]
 
-        logger.error("Card name replace quotes:" + UtilHelper.replace_quote(params[UtilHelper::PARAM_CARDNAME]))
+        logger.error("Card name decoded:" + card_name)
+        logger.error("Case name decoded:" + case_name)
 
         var = UtilHelper.read_template(QUESTIONS_TEMPLATE_PATH)
         var = UtilHelper.replace_card_id_tag(var, card_id)
