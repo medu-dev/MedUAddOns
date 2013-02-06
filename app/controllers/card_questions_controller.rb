@@ -30,9 +30,9 @@ class CardQuestionsController < ApplicationController
         var = UtilHelper.replace_course_id_tag(var, course_id)
         var = UtilHelper.replace_user_id_tag(var, user_id)
         var = UtilHelper.replace_hostname(var)
-        var = UtilHelper.replace_case_name_tag(var, UtilHelper.replace_quote(case_name))
+        var = UtilHelper.replace_case_name_tag(var, URI::encode(case_name))
         var = UtilHelper.replace_case_id_tag(var, case_id)
-        var = UtilHelper.replace_card_name_tag(var, UtilHelper.replace_quote(card_name))
+        var = UtilHelper.replace_card_name_tag(var, URI::encode(card_name))
         var = UtilHelper.replace_group_id_tag(var, group_id)
 
       rescue   Exception => exception
@@ -51,9 +51,9 @@ class CardQuestionsController < ApplicationController
     @user_id = UtilHelper.get_user_id(params)
     @questions = nil
     @runtime_envrironment = RunTimeEnvironment.get_runtime_environment();
-    @case_name = params[UtilHelper::PARAM_CASENAME]
+    @case_name = URI::encode(params[UtilHelper::PARAM_CASENAME])
     @case_id = params[UtilHelper::PARAM_CASEID]
-    @card_name = params[UtilHelper::PARAM_CARDNAME]
+    @card_name = URI::encode(params[UtilHelper::PARAM_CARDNAME])
     @group_id = params[UtilHelper::PARAM_GROUPID]
 
     begin

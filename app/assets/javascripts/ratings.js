@@ -18,9 +18,9 @@ function getRating(id, question_id) {
       cardid: currentCardid,
       courseid: currentCourseId,
       userid: currentUserId,
-      casename: encodeURIComponent(currentCaseName),
+      casename: currentCaseName,
       caseid: currentCaseId,
-      cardname: encodeURIComponent(currentCardName),
+      cardname: currentCardName,
       groupid: currentGroupId,
       questionid: question_id
     },
