@@ -8,6 +8,10 @@ class CardQuestionsController < ApplicationController
   TITLE_3 = "three"
   TITLE_4 = "four"
   TITLE_5 = "five"
+  TITLE_6 = "six"
+  TITLE_7 = "seven"
+  TITLE_8 = "eight"
+  TITLE_9 = "nine"
 
   def init
     var = ""
