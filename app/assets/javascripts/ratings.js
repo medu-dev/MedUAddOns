@@ -9,6 +9,8 @@ var currentGroupId = "";
 function getRating(id, question_id) {
   var score = $("#"+id).val();
 
+  alert("score: " + score);
+
   $.ajax({
     url: "save_answer",
     type: "POST",
