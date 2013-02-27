@@ -29,8 +29,8 @@ got this css from: http://lea.verou.me/2011/08/accessible-star-rating-widget-wit
 }
 
 .rating:not(:checked) > label:before {
-  content: '★ ';
-  /*content: '●';*/
+  /*content: '★ ';*/
+  content: '●';
 }
 
 .rating > input:checked ~ label {

@@ -111,8 +111,9 @@ module UtilHelper
     hostname = PRODUCTION
 
     if(RunTimeEnvironment.is_development? || RunTimeEnvironment.is_test?)
-      #hostname = LOCALHOST
-      hostname = "192.168.1.139:3000"
+      hostname = LOCALHOST
+      #hostname = "192.168.1.139:3000"
+      #hostname = STAGING
     else if RunTimeEnvironment.is_staging?
           hostname = STAGING
          end
