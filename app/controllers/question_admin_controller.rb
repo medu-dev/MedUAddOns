@@ -168,9 +168,9 @@ class QuestionAdminController < ApplicationController
     results = QuestionAdminHelper.select_all_answsers()
 
     CSV.generate do |csv|
-      csv << ["Question", "Course", "Answer",  "Card Name", "Card Id", "Case Name", "Case Id", "User Id", "Group Id"]
+      csv << ["Question", "Course", "Answer",  "Card Name", "Card Id", "Case Name", "Case Id", "User Id", "Group Id", "Date"]
       for r in results
-        csv << [ r.body, r.course_name, r.score, r.card_name, r.card_id, r.case_name, r.case_id, r.user_id, r.group_id ]
+        csv << [ r.body, r.course_name, r.score, r.card_name, r.card_id, r.case_name, r.case_id, r.user_id, r.group_id, r.created_at ]
       end
     end
   end
