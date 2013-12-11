@@ -56,7 +56,7 @@ got this css from: http://lea.verou.me/2011/08/accessible-star-rating-widget-wit
 .rating > label:active {
   position:relative;
   top:2px;
-  left:2px;
+  left:3px;
 }
 
 .question_div {
@@ -68,6 +68,7 @@ got this css from: http://lea.verou.me/2011/08/accessible-star-rating-widget-wit
   display:block;
   font-family: Arial, Verdana, Helvetica, sans-serif;
   font-size: 10pt;
+  margin-left: 3px;
 }
 
 /* using this puts a break between each question and ratings element pairs*/
@@ -76,7 +77,9 @@ got this css from: http://lea.verou.me/2011/08/accessible-star-rating-widget-wit
 }
 
 .topDiv {
-  width: 90%;
+  width: 60%;
   padding-top: 8px;
-  border-top: 2px solid #aaaaaa;
+  border: 1px solid #aaaaaa;
+  height: 180px;
+  overflow: auto;
 }
