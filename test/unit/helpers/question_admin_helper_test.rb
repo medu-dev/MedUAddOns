@@ -125,4 +125,32 @@ class QuestionAdminHelperTest < ActionView::TestCase
     identifier = QuestionAdminHelper.get_unique_identifier
     assert_not_nil(identifier)
   end
+
+  def test_order_cards
+    x = "<< 1>> now is the time for all"
+    assert_equal(1, QuestionAdminHelper.get_order(x))
+    a = "<<12>> now is the time for all"
+    assert_equal(12, QuestionAdminHelper.get_order(a))
+    c = "no tag present"
+    assert_nil(QuestionAdminHelper.get_order(c))
+    d = "<<4 half a tag"
+    assert_nil(QuestionAdminHelper.get_order(d))
+    e = "<<14. >> now is the time"
+    assert_equal(14, QuestionAdminHelper.get_order(e))
+    e = "<<15.gh >> now is the time"
+    assert_equal(15, QuestionAdminHelper.get_order(e))
+  end
+
+  def test_remove_order_from_body
+    test_str ="now is the time for all good men"
+    x = "<< 1>> " + test_str
+    assert_equal(1, QuestionAdminHelper.get_order(x))
+
+    assert_equal(test_str, QuestionAdminHelper.remove_order_tag(x))
+    z = 0
+
+  end
+
+
+
 end

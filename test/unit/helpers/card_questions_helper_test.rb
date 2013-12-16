@@ -60,5 +60,4 @@ class CardQuestionsHelperTest < ActionController::TestCase
     assert_nil(answer)
   end
 
-
 end

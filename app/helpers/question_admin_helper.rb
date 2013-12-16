@@ -1,5 +1,7 @@
 module QuestionAdminHelper
 
+
+
   def self.create_question(value)
     question = Question.new
 
@@ -44,6 +46,34 @@ module QuestionAdminHelper
 
     all = Question.find_by_sql(sql)
 
+    ordered_list = nil
+    if(!all.nil? && all.length > 0)
+      ordered_list = Array.new(all.length)
+
+      all.each do |question|
+        order = get_order(question.body)
+
+        if(order.nil?)
+          ordered_list = nil
+          break
+        end
+
+        question.body = remove_order_tag(question.body)
+
+        begin
+          ordered_list[order-1] = question
+        rescue
+          # trap index out of bounds errors
+          ordered_list = nil
+        end
+      end
+
+      if(!ordered_list.nil?)
+        all = ordered_list
+      end
+
+    end
+
     return all
   end
 
@@ -66,5 +96,25 @@ module QuestionAdminHelper
 
     return identifier
   end
+
+  def self.get_order(value)
+    order = nil
+    begin
+      # will throw an error if no value
+      order = value.match(/<<([^}]*)>>/)[1].strip().to_i
+    rescue
+    end
+
+    return order
+  end
+
+  def self.remove_order_tag(value)
+    index = value.index('>>')
+    new_str = value.slice(index+2,value.length).strip()
+
+    return new_str
+  end
+
+
 
 end
